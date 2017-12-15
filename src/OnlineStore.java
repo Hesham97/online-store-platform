@@ -1,4 +1,6 @@
-public class OnlineStore extends OffLineStore {
+import java.util.List;
+
+public class OnlineStore  {
 
   public String name;
 

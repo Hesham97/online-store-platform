@@ -22,9 +22,7 @@ public class Customer {
   return null;
   }
 
-  public Integer SignIn(String userName, String password) {
-  return null;
-  }
+
 
   public void Signout() {
   }
@@ -41,7 +39,7 @@ public class Customer {
   return null;
   }
 
-  public integer Buy(String[] productID) {
+  public Integer Buy(String[] productID) {
   return null;
   }
 

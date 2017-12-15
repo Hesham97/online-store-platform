@@ -1,3 +1,7 @@
+import java.util.List;
+
+
+//we have to think about this extend
 public class OfflineStore extends OnlineStore {
 
   public String Address;

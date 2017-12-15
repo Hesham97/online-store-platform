@@ -19,7 +19,7 @@ public class Admin {
   return null;
   }
 
-  public Integer BlockStoreOwner( StoreOwnerID) {
+  public Integer BlockStoreOwner(String StoreOwnerID) {
   return null;
   }
 

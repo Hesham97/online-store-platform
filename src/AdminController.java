@@ -1,17 +1,22 @@
-public interface AdminController {
+public class AdminController {
 
-  public void SignIn(String name, String Password);
+  public void SignIn(String name, String Password) {}
 
-  public String AddProduct(String name, String BrandID, String category);
+  public String AddProduct(String name, String BrandID, String category) {
+	return null;}
 
-  public String DeleteProduct(String ProductID);
+  public String DeleteProduct(String ProductID){
+		return null;}
 
-  public String RemoveStore(String StoreID);
+  public String RemoveStore(String StoreID){
+		return null;}
 
-  public String BlockStoreOwner( StoreOwnerID);
+  public String BlockStoreOwner(String StoreOwnerID){
+		return null;}
 
-  public Stat ShowStat();
+  public Stat ShowStat(){}
 
-  public String BlockUser(String CustomerName);
+  public String BlockUser(String CustomerName){
+		return null;}
 
 }

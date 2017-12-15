@@ -1,3 +1,5 @@
+import java.util.List;
+
 public class StoreOwner {
 
   public String name;
@@ -28,11 +30,11 @@ public class StoreOwner {
   return null;
   }
 
-  public Integer AddStore( //kamelha) {
+  public Integer AddStore( ) {
   return null;
   }
 
-  public Integer UpdateStore( //kamelha) {
+  public Integer UpdateStore() {
   return null;
   }
 

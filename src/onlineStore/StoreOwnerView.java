@@ -17,6 +17,7 @@ public class StoreOwnerView {
 			System.out.println("1. signin\n2. signUp\n3. close");
 			in = input.nextInt();
 			if(in == 1) {
+				storeOwnerCntroller = new  StoreOwnerCntroller();
 				System.out.println("Enter the user name : ");
 				String name = input.next();
 				System.out.println("Enter the password : ");
@@ -38,7 +39,9 @@ public class StoreOwnerView {
 				String _address = input.next();
 				System.out.println("Enter the premuim : ");
 				String _premuim = input.next();
+				storeOwnerCntroller = new StoreOwnerCntroller();
 				storeOwnerCntroller.SignUp(_name, _userName, _password, _phoneNumber, _address, _premuim);
+				storeOwnerCntroller = null;
 			}else if(in == 3) {
 				return false;
 			}else {
@@ -112,6 +115,7 @@ public class StoreOwnerView {
 		}
 		}catch(SQLException e) {
 			System.out.println("some thing went wrong");
+			storeOwnerCntroller = null;
 		}
 		return true;
 	}

@@ -17,7 +17,7 @@ public class StoreOwner {
   
 	public Boolean premium;
 
-	public List<String> storeList;
+	//public List<String> storeList;
 
 	public Double balance;
 	
@@ -36,17 +36,17 @@ public class StoreOwner {
 		phoneNumber = storeOwner.phoneNumber;
 		address = storeOwner.address;
 		premium = storeOwner.premium;
-		storeList = storeOwner.storeList;
+		//storeList = storeOwner.storeList;
 		balance = storeOwner.balance;
 		return true;
 	}
 	
 	public void AddProductToOnlineStore(String storeID, String productID, Double price, Integer quantaty, Double discount) throws SQLException {
-		productDBHandler.addOnlineProduct(productID, price, quantaty, discount, storeID);
+		productDBHandler.addOflineProduct(productID, productName, productPrice, quantity, discount, category, storeID);
 	}
 	
 	public void AddProductToOfflineStore(String storeID, String productID, Double price, Integer quantaty, Double discount) throws SQLException {
-		productDBHandler.addOfflineProduct(productID, price, quantaty, discount, storeID);
+		productDBHandler.addOflineProduct(productID, price, quantaty, discount, storeID);
 	}
 	
 	public void AddOnlineStore(String name,String storeOwnerUserName) throws SQLException {

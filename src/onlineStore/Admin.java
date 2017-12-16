@@ -11,6 +11,7 @@ public class Admin {
   AdminDBHandler adminDBHandler = new AdminDBHandler();
   
   public boolean SignIn() throws SQLException {
+	  System.out.println(adminDBHandler.FindAdmin(name,password));
 	  return adminDBHandler.FindAdmin(name,password);
   }
   

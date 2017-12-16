@@ -5,7 +5,7 @@ import java.util.Scanner;
 
 public class AdminView {
 	
-	AdminController adminController = new AdminController();
+	AdminController adminController = null;
 	
 	public Boolean ViewAdmin() {
 		int in;
@@ -13,9 +13,11 @@ public class AdminView {
 		Scanner input = new Scanner(System.in);
 		try {
 			if(adminController == null) {
+				
 				System.out.println("1. signin\n2. close");
 				in = input.nextInt();
 				if(in == 1) {
+					adminController = new  AdminController();
 					System.out.println("Enter the name : ");
 					String name = input.next();
 					System.out.println("Enter the password : ");
@@ -83,6 +85,7 @@ public class AdminView {
 			}
 		}catch(SQLException e) {
 			System.out.println("some thing went wrong");
+			adminController = null;
 		}
 		return true;
 	}

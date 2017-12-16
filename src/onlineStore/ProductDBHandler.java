@@ -18,17 +18,33 @@ public class ProductDBHandler {
 		}
 	}
 
-	public void addOnlineProduct(String productID, String productName, float productPrice, int quantity, float discount,
-			String category, String storeID) throws SQLException {
+	public void addOnlineProduct(String productID, float productPrice, int quantity, float discount,
+			 String storeID) throws SQLException {
 
 		/*
-		 * | PRODUCTID | varchar(100) | NO | PRI | NULL | | | ONLINESTORENAME |
-		 * varchar(50) | NO | PRI | NULL | | | PRODUCTPRICE | float | YES | | NULL | | |
-		 * PRODUCTQUANTITY | int(11) | YES | | NULL | | | PRODUCTDISCOUNT | float | YES
-		 * | | NULL | | | numberOfViews | int(11) | YES | | NULL | | | CATEGORYNAME |
-		 * varchar(20) | YES | MUL | NULL
+	+--------------+--------------+------+-----+---------+-------+
+| Field        | Type         | Null | Key | Default | Extra |
++--------------+--------------+------+-----+---------+-------+
+| PRODUCTNAME  | varchar(50)  | YES  |     | NULL    |       |
+| PRODUCTID    | varchar(100) | NO   | PRI | NULL    |       |
+| CATEGORYNAME | varchar(20)  | YES  | MUL | NULL    |       |
+| BRANDNAME    | varchar(50)  | YES  | MUL | NULL    |       |
++--------------+--------------+------+-----+---------+-------+
+
 		 * 
 		 */
+		String getQuery = "select * from PRODUCT where PRODUCTID='"+productID+"';";
+		Statement stmtw = DB.createStatement();
+		ResultSet resultSet= stmtw.executeQuery(getQuery);
+		
+		String  productName;
+		String category;
+		String brand;
+		
+		
+		while(resultSet.next()) {
+			
+		}
 		String insertQuery = "INSERT INTO ONLINESTOREPRODUCT (PRODUCTID,ONLINESTORENAME,PRODUCTPRICE,"
 				+ "PRODUCTQUANTITY,PRODUCTDISCOUNT,numberOfViews,CATEGORYNAME)" + "VALUES " + "('"
 				+ (productID + storeID) + "', '" + storeID + "'," + "'" + productPrice + "','" + quantity + "','"

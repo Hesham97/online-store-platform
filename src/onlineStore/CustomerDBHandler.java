@@ -30,7 +30,11 @@ public class CustomerDBHandler {
 | CUSTOMERPHONENUMBER | varchar(12)  | YES  |     | NULL    |       |
 +---------------------+--------------+------+-----+---------+-------+
 	 */
-	
+/*	String insertQuery ="INSERT INTO CUSTOMER (CUSTOMERFNAME,CUSTOMERUSERNAME,CUSTOMERSNAME2"
+			+ "CUSTOMERE_MAIL,CUSTOMERPASSWORD,CUSTOMERPHONENUMBER VALUES('"+_name
+			+"','"+_userName+"','"+_name2+"','"+email+"','"+_password+"','";
+	Statement stmt = DB.createStatement();
+	stmt.executeUpdate(insertQuery);*/
 	public void addCustomer(String CUSTOMERFNAME, String CUSTOMERUSERNAME, 
 			String CUSTOMERSNAME2, String CUSTOMERE_MAIL,
 			String CUSTOMERPASSWORD, String CUSTOMERPHONENUMBER) throws SQLException {

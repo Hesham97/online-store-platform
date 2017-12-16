@@ -19,13 +19,10 @@ public class AdminDBHandler {
 	}
 
 	public boolean FindAdmin(String userName, String Password) throws SQLException {
-		String query = "select * from ADMIN where ADMINNAME ='z' and ADMINPASSWORD ='1234';";
+		String query = "select * from ADMIN where ADMINNAME ='"+userName+"' and ADMINPASSWORD ='"+Password+"';";
 		Statement st = DB.createStatement();
 		ResultSet rs = st.executeQuery(query);
 		if (rs.next()) {
-			String id = rs.getString("ADMINNAME");
-			String str1 = rs.getString("ADMINPASSWORD");
-			// System.out.println(id + "-----" + str1);
 			return true;
 		}
 
@@ -35,8 +32,8 @@ public class AdminDBHandler {
 	public void addBrand(String brandName, String companyName) throws SQLException {
 		String insertQuery = "INSERT INTO BRAND (BRANDNAME,BRANDCOMPANY)" + "VALUES " + "('" + brandName + "', '"
 				+ companyName + "');";
-		System.out.println("Creating statement...");
 		Statement stmt = DB.createStatement();
+		stmt.executeUpdate(insertQuery);
 
 	}
 

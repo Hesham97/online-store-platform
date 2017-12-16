@@ -8,14 +8,13 @@ public class StoreOwnerView {
 	
 	StoreOwnerCntroller storeOwnerCntroller = null;
 	
-	public void ViewStoreOwner(){
+	public Boolean ViewStoreOwner(){
 		int in;
 		@SuppressWarnings("resource")
 		Scanner input = new Scanner(System.in);
 		try {
 		if(storeOwnerCntroller == null) {
-			System.out.println("1. signin");
-			System.out.println("2. signUp");
+			System.out.println("1. signin\n2. signUp\n3. close");
 			in = input.nextInt();
 			if(in == 1) {
 				System.out.println("Enter the user name : ");
@@ -40,12 +39,14 @@ public class StoreOwnerView {
 				System.out.println("Enter the premuim : ");
 				String _premuim = input.next();
 				storeOwnerCntroller.SignUp(_name, _userName, _password, _phoneNumber, _address, _premuim);
+			}else if(in == 3) {
+				return false;
 			}else {
 				System.out.println("Wrong input !");
 			}
 		}else {
 			System.out.println("1. Add product to online store\n2.add product to offline store"
-					+ "\n3. add online store\n4. add offline store");
+					+ "\n3. add online store\n4. add offline store\n5. signout");
 			in = input.nextInt();
 			if(in == 1) {
 				ArrayList<Product> systemProduct = storeOwnerCntroller.GetAllProducts();
@@ -103,6 +104,8 @@ public class StoreOwnerView {
 				System.out.println("Enter the store owner user name : ");
 				String storeOwnerUserName = input.next();
 				storeOwnerCntroller.AddOfflineStore(name, address, storeOwnerUserName);;
+			}else if(in == 5) {
+				return false;
 			}else {
 				System.out.println("Wrong input !");
 			}
@@ -110,6 +113,7 @@ public class StoreOwnerView {
 		}catch(SQLException e) {
 			System.out.println("some thing went wrong");
 		}
+		return true;
 	}
 	
 	void PrintProducts(ArrayList<Product> products) {

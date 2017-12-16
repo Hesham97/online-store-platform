@@ -23,7 +23,7 @@ public class AdminDBHandler {
 		
 	}
 	//end radwan
-	
+
 	public void addBrand(String brandName,String companyName) throws SQLException {
 		String insertQuery = "INSERT INTO BRAND (BRANDNAME,BRANDCOMPANY)"
 				+ "VALUES " + "('" + brandName + "', '" + companyName + "');";

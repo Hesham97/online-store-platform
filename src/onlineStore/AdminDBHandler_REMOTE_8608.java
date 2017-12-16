@@ -16,14 +16,7 @@ public class AdminDBHandler {
 			e.printStackTrace();
 		}
 	}
-	
-	//radwan
-	//true if founded false if not
-	public void FindAdmin()  throws SQLException {
-		
-	}
-	//end radwan
-	
+
 	public void addBrand(String brandName,String companyName) throws SQLException {
 		String insertQuery = "INSERT INTO BRAND (BRANDNAME,BRANDCOMPANY)"
 				+ "VALUES " + "('" + brandName + "', '" + companyName + "');";

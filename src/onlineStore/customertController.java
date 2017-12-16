@@ -20,8 +20,8 @@ public class customertController {
   public String Buy(String[] productId){
 		return null;}
 
-  public Cart ViewCart() {
-		return null;}
+//  public Cart ViewCart() {
+//		return null;}
 
   public String SelectPaymentMethod(String MethodID, Double price){
 		return null;}

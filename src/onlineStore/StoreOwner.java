@@ -39,8 +39,8 @@ public class StoreOwner {
   return null;
   }
 
-  public Stat GetStat() {
-  return null;
-  }
+//  public Stat GetStat() {
+//  return null;
+//  }
 
 }

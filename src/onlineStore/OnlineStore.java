@@ -9,8 +9,8 @@ public class OnlineStore  {
 
   public List<String> productLIst;
 
-  public Stat GetStat() {
-  return null;
-  }
+//  public Stat GetStat() {
+//  return null;
+//  }
 
 }

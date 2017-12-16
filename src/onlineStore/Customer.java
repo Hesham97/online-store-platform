@@ -36,9 +36,9 @@ public class Customer {
   return null;
   }
 
-  public Cart ViewCart() {
-  return null;
-  }
+//  public Cart ViewCart() {
+//  return null;
+//  }
 
   public Integer Buy(String[] productID) {
   return null;
@@ -60,7 +60,7 @@ public class Customer {
   return null;
   }
 
-  public void SignUp( //) {
-  }
+//  public void SignUp( //) {
+//  }
 
 }

@@ -25,8 +25,8 @@ public class StoreOwnerCntroller {
 	  return null;
   }
 
-  public Stat GetStat(){
-	  return null;
-  }
+//  public Stat GetStat(){
+//	  return null;
+//  }
 
 }

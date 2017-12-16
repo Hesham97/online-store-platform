@@ -11,7 +11,7 @@ public class SingletonDB {
 	private final String url = "jdbc:mysql://127.0.0.1:3306/onlineStore";
 	private final String username = "root";
 	private final String password = "fci1122";
-	Connection connection;
+	private Connection connection;
 
 	private SingletonDB() throws SQLException {
 
@@ -31,7 +31,6 @@ public class SingletonDB {
 		if (DB == null) {
 			DB = new SingletonDB();
 		}
-		System.out.println("s");
 		return DB.connection;
 	}
 }

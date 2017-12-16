@@ -11,7 +11,7 @@ public class Admin {
   AdminDBHandler adminDBHandler = new AdminDBHandler();
   
   public boolean SignIn() throws SQLException {
-	  return adminDBHandler.FindAdmin();
+	  return adminDBHandler.FindAdmin(name,password);
   }
   
   public void AddBrand(String brandName,String companyName) throws SQLException {

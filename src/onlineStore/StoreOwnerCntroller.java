@@ -1,31 +1,56 @@
 package onlineStore;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 public class StoreOwnerCntroller {
+	
+	StoreOwner storeOwner = new StoreOwner();
 
-	public String AddProduct(String storeID, String productID, Double price, Integer quantaty, Double discount) throws SQLException {
-		return null;
+	public void SignUp(String _name ,String _userName ,String _password , String _phoneNumber , String _address , String _premium) throws SQLException {
+		storeOwner.SignUp(_name ,_userName,_password,_phoneNumber,_address,_premium);
+	}
+	
+	public boolean SignIn(String _userName ,String _password) throws SQLException {
+		storeOwner.userName = _userName;
+		storeOwner.password = _password;
+		return storeOwner.SignIn(_userName ,_password);
+	}
+	
+	public void AddProductToOnlineStore(String storeID, String productID, Double price, Integer quantaty, Double discount) throws SQLException {
+		storeOwner.AddProductToOnlineStore(storeID,productID,price,quantaty,discount);
+	}
+	
+	public void AddProductToOfflineStore(String storeID, String productID, Double price, Integer quantaty, Double discount) throws SQLException {
+		storeOwner.AddProductToOfflineStore(storeID,productID,price,quantaty,discount);
+	}
+	
+	public void AddOnlineStore(String name,String storeOwnerUserName) throws SQLException {
+		storeOwner.AddOnlineStore(name, storeOwnerUserName);
+	}
+	
+	public void AddOfflineStore(String name,String address , String storeOwnerUserName) throws SQLException {
+		storeOwner.AddOfflineStore(name, storeOwnerUserName, address);
+	}
+	
+	public ArrayList<Product> GetAllProducts(){
+		return storeOwner.GetAllProducts();
 	}
 
-	public String UpdateProduct(String storeID, String productID, Double price, Integer quantaty, Double discount) throws SQLException {
-		return null;
+	public void UpdateProduct(String storeID, String productID, Double price, Integer quantaty, Double discount) throws SQLException {
+
 	}
 
-	public String DeleteProduct(String storeID, String productID) throws SQLException {
-		return null;
+	public void DeleteProduct(String storeID, String productID) throws SQLException{
+		
 	}
 
-	public String DeleteStore(String StoreID) throws SQLException {
-		return null;
+	public void DeleteStore(String StoreID) throws SQLException {
+		
 	}
 
-	public String AddStore(Boolean onlineStore , String storeName) throws SQLException {
-		return null;
-	}
-
-	public String UpdateStore() throws SQLException {
-	  return null;
+	public void UpdateStore() throws SQLException {
+	  
 	}
 
 //  public Stat GetStat(){

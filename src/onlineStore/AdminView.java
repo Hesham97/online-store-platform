@@ -7,13 +7,13 @@ public class AdminView {
 	
 	AdminController adminController = new AdminController();
 	
-	public void ViewAdmin() {
+	public Boolean ViewAdmin() {
 		int in;
 		@SuppressWarnings("resource")
 		Scanner input = new Scanner(System.in);
 		try {
 			if(adminController == null) {
-				System.out.println("1. signin");
+				System.out.println("1. signin\n2. close");
 				in = input.nextInt();
 				if(in == 1) {
 					System.out.println("Enter the name : ");
@@ -24,12 +24,14 @@ public class AdminView {
 						adminController = null;
 						System.out.println("wrong name or password!");
 					}
+				}else if(in == 2){
+					return false;
 				}else {
 					System.out.println("Wrong input !");
 				}
 			}else {
 				System.out.println("1. add brand\n2. add product\n3. remove product\n4. remove store\n"
-						+ "5. block store owner\n6.block user");
+						+ "5. block store owner\n6.block user\n7. signout");
 				in = input.nextInt();
 				if(in == 1) {
 					System.out.print("Input brand name : ");
@@ -73,6 +75,8 @@ public class AdminView {
 					String customerName;
 					customerName = input.next();
 					adminController.BlockUser(customerName);
+				}else if(in == 7){
+					return false;
 				}else{
 					System.out.println("Wrong input !");
 				}
@@ -80,5 +84,6 @@ public class AdminView {
 		}catch(SQLException e) {
 			System.out.println("some thing went wrong");
 		}
+		return true;
 	}
 }

@@ -8,10 +8,9 @@ public class Admin {
 
   public String password;
 
-  public Boolean SignIn() throws SQLException {
+  public void  SignIn() throws SQLException {
 	  AdminDBHandler adminDBHandler = new AdminDBHandler();
 	  adminDBHandler.FindAdmin();
-	  return true;
   }
   
   public void AddBrand(String brandName,String companyName) throws SQLException {
@@ -23,7 +22,7 @@ public class Admin {
   }
 
   public void DeleteProduct(String productID) throws SQLException {
-	  
+	   
   }
 
   public void RemoveStore(String storeID) throws SQLException {

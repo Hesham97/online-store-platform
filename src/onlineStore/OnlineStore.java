@@ -5,7 +5,7 @@ public class OnlineStore  {
 
   public String name;
 
-  public String storeOwnerID;
+  public String storeOwnerUserName;
 
   public List<String> productLIst;
 

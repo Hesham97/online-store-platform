@@ -4,7 +4,8 @@ import java.sql.SQLException;
 import java.util.Scanner;
 
 public class AdminView {
-	AdminController adminController = null;
+	
+	AdminController adminController = new AdminController();
 	
 	public void ViewAdmin() {
 		int in;
@@ -19,12 +20,13 @@ public class AdminView {
 					String name = input.next();
 					System.out.println("Enter the password : ");
 					String Password = input.next();
-					adminController = new AdminController();
-					adminController.SignIn(name, Password);
+					if(!adminController.SignIn(name, Password)) {
+						adminController = null;
+						System.out.println("wrong name or password!");
+					}
 				}else {
 					System.out.println("Wrong input !");
 				}
-				
 			}else {
 				System.out.println("1. add brand\n2. add product\n3. remove product\n4. remove store\n"
 						+ "5. block store owner\n6.block user");
@@ -41,13 +43,16 @@ public class AdminView {
 					System.out.print("Input name : ");
 					String name;
 					name = input.next();
+					System.out.print("Input product ID : ");
+					String productID;
+					productID = input.next();
 					System.out.print("Input brand : ");
 					String brand;
 					brand = input.next();
 					System.out.print("Input category : ");
 					String category;
 					category = input.next();
-					adminController.AddProduct(name, brand, category);
+					adminController.AddProduct(name , productID , brand, category);
 				}else if(in == 3) {
 					System.out.print("Input product ID : ");
 					String productID;

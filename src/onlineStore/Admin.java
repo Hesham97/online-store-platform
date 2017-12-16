@@ -8,17 +8,18 @@ public class Admin {
 
   public String password;
 
-  public void  SignIn() throws SQLException {
-	  AdminDBHandler adminDBHandler = new AdminDBHandler();
-	  adminDBHandler.FindAdmin();
+  AdminDBHandler adminDBHandler = new AdminDBHandler();
+  
+  public boolean SignIn() throws SQLException {
+	  return adminDBHandler.FindAdmin();
   }
   
   public void AddBrand(String brandName,String companyName) throws SQLException {
-		
+	  adminDBHandler.addBrand(brandName,companyName);
   }
 
-  public void AddProduct(String name, String brandID, String category) throws SQLException {
-	  
+  public void AddProduct(String name, String productID , String brandID, String category) throws SQLException {
+	  adminDBHandler.AddProduct(name,productID,brandID,category);
   }
 
   public void DeleteProduct(String productID) throws SQLException {

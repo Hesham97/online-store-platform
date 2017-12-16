@@ -23,8 +23,6 @@ public class Customer {
   return null;
   }
 
-
-
   public void Signout() {
   }
 

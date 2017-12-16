@@ -6,19 +6,19 @@ public class AdminController {
   
 	Admin admin = null;
 	
-	public void SignIn(String name, String password) throws SQLException {
+	public boolean SignIn(String name, String password) throws SQLException {
 		admin = new Admin();
 		admin.name = name;
 		admin.password = password;
-		admin.SignIn();
+		return admin.SignIn();
 	}
 	
 	public void AddBrand(String brandName,String companyName) throws SQLException {
 		admin.AddBrand(brandName, companyName);
 	}
 	
-	public void AddProduct(String name, String brandID, String category) throws SQLException {
-		admin.AddProduct(name, brandID, category);
+	public void AddProduct(String name, String productID , String brandID, String category) throws SQLException {
+		admin.AddProduct(name , productID , brandID, category);
 	}
 	
 	public void DeleteProduct(String productID) throws SQLException {

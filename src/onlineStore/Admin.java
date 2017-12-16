@@ -11,7 +11,7 @@ public class Admin {
   AdminDBHandler adminDBHandler = new AdminDBHandler();
   
   public boolean SignIn() throws SQLException {
-	  return adminDBHandler.FindAdmin();
+	  return adminDBHandler.FindAdmin(name,password);
   }
   
   public void AddBrand(String brandName,String companyName) throws SQLException {
@@ -19,7 +19,7 @@ public class Admin {
   }
 
   public void AddProduct(String name, String productID , String brandID, String category) throws SQLException {
-	  adminDBHandler.AddProduct(name,productID,brandID,category);
+	  adminDBHandler.addProduct(name,productID,brandID,category);
   }
 
   public void DeleteProduct(String productID) throws SQLException {

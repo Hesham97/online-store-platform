@@ -1,5 +1,6 @@
 package onlineStore;
 
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
@@ -16,41 +17,35 @@ public class AdminDBHandler {
 			e.printStackTrace();
 		}
 	}
-	
-	//radwan
-	//true if founded false if not
-	public void FindAdmin()  throws SQLException {
-		
+
+	public boolean FindAdmin(String userName, String Password) throws SQLException {
+		String query = "select * from ADMIN where ADMINNAME ='z' and ADMINPASSWORD ='1234';";
+		Statement st = DB.createStatement();
+		ResultSet rs = st.executeQuery(query);
+		if (rs.next()) {
+			String id = rs.getString("ADMINNAME");
+			String str1 = rs.getString("ADMINPASSWORD");
+			// System.out.println(id + "-----" + str1);
+			return true;
+		}
+
+		return false;
 	}
-	//end radwan
-	
-	public void addBrand(String brandName,String companyName) throws SQLException {
-		String insertQuery = "INSERT INTO BRAND (BRANDNAME,BRANDCOMPANY)"
-				+ "VALUES " + "('" + brandName + "', '" + companyName + "');";
+
+	public void addBrand(String brandName, String companyName) throws SQLException {
+		String insertQuery = "INSERT INTO BRAND (BRANDNAME,BRANDCOMPANY)" + "VALUES " + "('" + brandName + "', '"
+				+ companyName + "');";
 		System.out.println("Creating statement...");
 		Statement stmt = DB.createStatement();
 
-		stmt.executeUpdate(insertQuery);
 	}
-	public void addProduct(String productName,String productID,String category)
-			throws SQLException {
-		
-	/*	|  PRODUCTNAME    | varchar(50)  | YES  |     | NULL    |       |
-		| PRODUCTID       | varchar(100) | NO   | PRI | NULL    |       |
-		| CATEGORYNAME    | varchar(20)  | YES  | MUL | NULL    |       |
-		| PRODUCTPRICE    | float        | YES  |     | NULL    |       |
-		| PRODUCTQUANTITY | int(11)      | YES  |     | NULL    |       |
-		| PRODUCTDISCOUNT | float        | YES  |     | NULL    |       |
-		| numberOfViews   | int(11)      | YES  |     | NULL    |       |
-*/
-		String insertQuery = "INSERT INTO PRODUCT (PRODUCTNAME,PRODUCTID,CATEGORYNAME)"
-				+ "VALUES " + "('" + productName + "', '" + productID + "','" + category 
-				+"');";
+
+	public void addProduct(String productName, String productID, String brand, String category) throws SQLException {
+		String insertQuery = "INSERT INTO PRODUCT (PRODUCTNAME,PRODUCTID," + "CATEGORYNAME,BRANDNAME)" + "VALUES "
+				+ "('" + productName + "', '" + productID + "','" + category + "','" + brand + "');";
 		System.out.println("Creating statement...");
 		Statement stmt = DB.createStatement();
-
 		stmt.executeUpdate(insertQuery);
-
 	}
-	
+
 }

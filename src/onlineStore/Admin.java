@@ -1,35 +1,43 @@
 package onlineStore;
+
+import java.sql.SQLException;
+
 public class Admin {
 
   public String name;
 
   public String password;
 
-  public void SignIn() {
+  public Boolean SignIn() throws SQLException {
+	  AdminDBHandler adminDBHandler = new AdminDBHandler();
+	  adminDBHandler.FindAdmin();
+	  return true;
+  }
+  
+  public void AddBrand(String brandName,String companyName) throws SQLException {
+		
   }
 
-  public Integer AddProduct(String name, String BrandID, String category) {
-  return null;
+  public void AddProduct(String name, String brandID, String category) throws SQLException {
+	  
   }
 
-  public Integer DeleteProduct(String ProductID) {
-  return null;
+  public void DeleteProduct(String productID) throws SQLException {
+	  
   }
 
-  public Integer RemoveStore(String StoreID) {
-  return null;
+  public void RemoveStore(String storeID) throws SQLException {
+	  
   }
 
-  public Integer BlockStoreOwner(String StoreOwnerID) {
-  return null;
+  public void BlockStoreOwner(String storeOwnerID) throws SQLException {
+	  
+  }
+  
+  public void BlockUser(String customerName) throws SQLException {
+	  
   }
 
-  public Stat ShowStat() {
-  return null;
-  }
-
-  public Integer BlockUser(String CustomerName) {
-  return null;
-  }
-
+  //public Stat ShowStat() { return null;}
+  
 }

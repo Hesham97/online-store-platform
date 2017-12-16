@@ -17,7 +17,7 @@ public class StoreOwnerCntroller {
 	  return null;
   }
 
-  public String AddStore( ){
+  public String AddStore(Boolean onlineStore , String storeName){
 	  return null;
   }
 

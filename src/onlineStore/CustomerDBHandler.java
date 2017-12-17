@@ -8,6 +8,7 @@ import com.mysql.jdbc.Connection;
 
 public class CustomerDBHandler {
 	private Connection DB;
+
 	public CustomerDBHandler() {
 		try {
 			DB = SingletonDB.getDB().getConnection();
@@ -16,6 +17,7 @@ public class CustomerDBHandler {
 			e.printStackTrace();
 		}
 	}
+
 	public void addCustomer(String CUSTOMERFNAME, String CUSTOMERUSERNAME, String CUSTOMERSNAME2, String CUSTOMERE_MAIL,
 			String CUSTOMERPASSWORD, String CUSTOMERPHONENUMBER) throws SQLException {
 
@@ -26,31 +28,35 @@ public class CustomerDBHandler {
 		Statement stmt = DB.createStatement();
 		stmt.executeUpdate(insertQuery);
 	}
+
 	public Customer SignInByEmail(String identifier, String password) throws SQLException {
 		String query = "SELECT * FROM CUSTOMER WHERE CUSTOMERE_MAIL ='" + identifier + "' AND CUSTOMERPASSWORD ='"
 				+ password + "'";
 		Statement stmt = DB.createStatement();
 		ResultSet resultSet = stmt.executeQuery(query);
-		Customer customer= new Customer();
+		Customer customer = null;
 		while (resultSet.next()) {
-			customer.firstName=resultSet.getString("CUSTOMERFNAME");
-			customer.email=resultSet.getString("CUSTOMERE_MAIL");
-			customer.phoneNumber=resultSet.getString("CUSTOMERPHONENUMBER");
-			customer.userName=resultSet.getString("CUSTOMERUSERNAME");
+			customer = new Customer();
+			customer.firstName = resultSet.getString("CUSTOMERFNAME");
+			customer.email = resultSet.getString("CUSTOMERE_MAIL");
+			customer.phoneNumber = resultSet.getString("CUSTOMERPHONENUMBER");
+			customer.userName = resultSet.getString("CUSTOMERUSERNAME");
 		}
 		return customer;
 	}
+
 	public Customer SignInByUserName(String identifier, String password) throws SQLException {
 		String query = "SELECT * FROM CUSTOMER WHERE CUSTOMERUSERNAME ='" + identifier + "' AND CUSTOMERPASSWORD ='"
 				+ password + "'";
 		Statement stmt = DB.createStatement();
 		ResultSet resultSet = stmt.executeQuery(query);
-		Customer customer= new Customer();
+		Customer customer = null;
 		while (resultSet.next()) {
-			customer.firstName=resultSet.getString("CUSTOMERFNAME");
-			customer.email=resultSet.getString("CUSTOMERE_MAIL");
-			customer.phoneNumber=resultSet.getString("CUSTOMERPHONENUMBER");
-			customer.userName=resultSet.getString("CUSTOMERUSERNAME");
+			customer = new Customer();
+			customer.firstName = resultSet.getString("CUSTOMERFNAME");
+			customer.email = resultSet.getString("CUSTOMERE_MAIL");
+			customer.phoneNumber = resultSet.getString("CUSTOMERPHONENUMBER");
+			customer.userName = resultSet.getString("CUSTOMERUSERNAME");
 		}
 		return customer;
 	}

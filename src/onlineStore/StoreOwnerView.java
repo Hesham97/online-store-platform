@@ -38,17 +38,16 @@ public class StoreOwnerView {
 					String _phoneNumber = input.next();
 					System.out.println("Enter the user address : ");
 					String _address = input.next();
-					System.out.println("Enter the premuim : ");
-					String _premuim = input.next();
+					System.out.println("Enter the Premium : ");
 					int type;
 					do {
-						System.out.println("1. online store\n2. offline store");
+						System.out.println("1. for Premium\n2. Normal Account");
 						type = input.nextInt();
 						if(type > 2 || type < 1)
 							System.out.println("wrong input");
 					}while(type > 2 || type < 1);
 					storeOwnerCntroller = new StoreOwnerCntroller();
-					storeOwnerCntroller.SignUp(_name, _userName, _password, _phoneNumber, _address, _premuim);
+					storeOwnerCntroller.SignUp(_name, _userName, _password, _phoneNumber, _address, String.valueOf((type==1)?1:0));
 					storeOwnerCntroller = null;
 				} else if (in == 3) {
 					return false;

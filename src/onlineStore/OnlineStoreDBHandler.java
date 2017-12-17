@@ -18,6 +18,7 @@ public class OnlineStoreDBHandler {
 			e.printStackTrace();
 		}
 	}
+
 	public ArrayList<OnlineStore> getStores(String stowerOwnerID) throws SQLException {
 		String query = "SELECT * FROM ONLINESTORE WHERE STOREOWNERUSERNAME='" + stowerOwnerID + "';";
 		Statement stmt = (Statement) DB.createStatement();

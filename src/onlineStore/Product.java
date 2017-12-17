@@ -18,6 +18,8 @@ public class Product {
   public Double discount;
 
   public Integer Sales;
+  
+  public Integer numberOfViews;
 
   public Product[] Search(Double price, String brandID, String category, String name, Boolean bestsales) {
   return null;

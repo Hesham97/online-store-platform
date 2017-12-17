@@ -21,6 +21,10 @@ public class AdminController {
 		admin.AddProduct(name , productID , brandID, category);
 	}
 	
+	public void AddVoucherCard(String serialNumber,float value,int quantity){
+		admin.AddVoucherCard(serialNumber,value,quantity);
+	}
+	
 	public void DeleteProduct(String productID) throws SQLException {
 		admin.DeleteProduct(productID);
 	}

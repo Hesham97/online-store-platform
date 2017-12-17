@@ -49,7 +49,9 @@ public class StoreOwnerView {
 			}
 		}else {
 			System.out.println("1. Add product to online store\n2.add product to offline store"
-					+ "\n3. add online store\n4. add offline store\n5. signout");
+					+ "\n3. add online store\n4. add offline store\n"
+					+ "5. Explore number of views to each product in a store\n"
+					+ "6. Get the most viewed product\n7. signout");
 			in = input.nextInt();
 			if(in == 1) {
 				ArrayList<Product> systemProduct = storeOwnerCntroller.GetAllProducts();
@@ -60,12 +62,18 @@ public class StoreOwnerView {
 					String storeID = input.next();
 					System.out.println("Enter the product ID : ");
 					String productID = input.next();
+					float price;
+					float discount;
+					do {
 					System.out.println("Enter the price : ");
-					Double price = input.nextDouble();
-					System.out.println("Enter the quantaty : ");
-					Integer quantaty = input.nextInt();
+					price = input.nextFloat();
 					System.out.println("Enter the discount : ");
-					Double discount = input.nextDouble();
+					discount = input.nextFloat();
+					if(price >= discount)
+						System.out.println("discount if bigger than the price");
+					}while(price < discount);
+					System.out.println("Enter the quantaty : ");
+					int quantaty = input.nextInt();
 					storeOwnerCntroller.AddProductToOnlineStore(storeID, productID, price, quantaty, discount);
 					System.out.println("1. Enter another product\n2. Quit");
 					in = input.nextInt();
@@ -108,6 +116,16 @@ public class StoreOwnerView {
 				String storeOwnerUserName = input.next();
 				storeOwnerCntroller.AddOfflineStore(name, address, storeOwnerUserName);;
 			}else if(in == 5) {
+				System.out.println("Enter the store ID : ");
+				String storeID = input.next();
+				ArrayList<Product> products = storeOwnerCntroller.getProducts(storeID);
+				PrintProductsWithViews(products);
+			}else if(in == 6) {
+				System.out.println("Enter the store ID : ");
+				String storeID = input.next();
+				ArrayList<Product> products = storeOwnerCntroller.GetTheMostViewedProduct(storeID);
+				PrintProductsWithViews(products);
+			}else if(in == 7) {
 				return false;
 			}else {
 				System.out.println("Wrong input !");
@@ -124,6 +142,13 @@ public class StoreOwnerView {
 		for(int i = 0 ; i < products.size() ; i++) {
 			System.out.println("product id : "+products.get(i).productID+" ,name : "+products.get(i).name+
 					" ,category : "+products.get(i).category);
+		}
+	}
+	
+	void PrintProductsWithViews(ArrayList<Product> products) {
+		for(int i = 0 ; i < products.size() ; i++) {
+			System.out.println("product id : "+products.get(i).productID+" ,name : "+products.get(i).name+
+					" ,category : "+products.get(i).category+", Views : "+products.get(i).numberOfViews);
 		}
 	}
 }

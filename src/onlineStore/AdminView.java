@@ -3,6 +3,8 @@ package onlineStore;
 import java.sql.SQLException;
 import java.util.Scanner;
 
+import sun.security.x509.SerialNumber;
+
 public class AdminView {
 	
 	AdminController adminController = null;
@@ -33,7 +35,7 @@ public class AdminView {
 				}
 			}else {
 				System.out.println("1. add brand\n2. add product\n3. remove product\n4. remove store\n"
-						+ "5. block store owner\n6.block user\n7. signout");
+						+ "5. block store owner\n6. block user\n7. add voucher card\n8. provide voucher cards\n9. signout");
 				in = input.nextInt();
 				if(in == 1) {
 					System.out.print("Input brand name : ");
@@ -78,6 +80,21 @@ public class AdminView {
 					customerName = input.next();
 					adminController.BlockUser(customerName);
 				}else if(in == 7){
+					String serialNumber;
+					do {
+					System.out.print("Input serial number : ");
+					serialNumber = input.next();
+					}while(serialNumber.length()>0 && serialNumber.length()<6);
+					System.out.print("Input value : ");
+					float value;
+					value = input.nextFloat();
+					System.out.print("Input quantity : ");
+					int quantity;
+					quantity = input.nextInt();
+					adminController.AddVoucherCard(serialNumber,value,quantity);
+				}else if(in == 8) {
+					
+				}else if(in == 9){
 					return false;
 				}else{
 					System.out.println("Wrong input !");

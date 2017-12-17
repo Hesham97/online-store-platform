@@ -61,9 +61,9 @@ public class StoreOwner {
 	public ArrayList<Product> getProducts(String storeID,boolean storeType) throws SQLException {
 		ArrayList<Product> products = null;
 		if(!storeType)
-			productDBHandler.onlineStoreProducts (storeID);
+			products=productDBHandler.onlineStoreProducts (storeID);
 		else
-			productDBHandler.offlineStoreProducts (storeID);
+			products=productDBHandler.offlineStoreProducts (storeID);
 		return products;
 	}
 	
@@ -96,9 +96,4 @@ public class StoreOwner {
 	public void DeleteStore(String StoreID) throws SQLException {}
 
 	public void UpdateStore() throws SQLException {}
-
-//  public Stat GetStat() {
-//  return null;
-//  }
-
 }

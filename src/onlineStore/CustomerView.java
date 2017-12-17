@@ -39,8 +39,8 @@ public class CustomerView {
 					String password = input.next();
 					System.out.println("Enter the phone number : ");
 					String phoneNumber = input.next();
-					_customertController = new StoreOwnerCntroller();
-				//	_customertController;
+					_customertController = new customertController();
+					_customertController.SignUp(firstName, secondName, userName, email, password, phoneNumber);
 					_customertController = null;
 				} else if (in == 3) {
 					return false;

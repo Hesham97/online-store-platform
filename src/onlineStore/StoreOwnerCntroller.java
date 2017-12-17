@@ -17,11 +17,11 @@ public class StoreOwnerCntroller {
 		return storeOwner.SignIn(_userName ,_password);
 	}
 	
-	public void AddProductToOnlineStore(String storeID, String productID, Double price, Integer quantaty, Double discount) throws SQLException {
-		storeOwner.AddProductToOnlineStore(storeID,productID,price,quantaty,discount);
+	public void AddProductToOnlineStore(String storeID, String productID, float price, int quantaty, float discount) throws SQLException {
+		storeOwner.AddProductToOnlineStore(storeID, productID, price, quantaty, discount);
 	}
 	
-	public void AddProductToOfflineStore(String storeID, String productID, Double price, Integer quantaty, Double discount) throws SQLException {
+	public void AddProductToOfflineStore(String storeID, String productID, float price, int quantaty, float discount) throws SQLException {
 		storeOwner.AddProductToOfflineStore(storeID,productID,price,quantaty,discount);
 	}
 	
@@ -34,7 +34,14 @@ public class StoreOwnerCntroller {
 	}
 	
 	public ArrayList<Product> GetAllProducts(){
-		return storeOwner.GetAllProducts();
+		ProductDBHandler dbHandler = new ProductDBHandler();
+		try {
+			return dbHandler.getProducts();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return null;
+		}
 	}
 
 	public void UpdateProduct(String storeID, String productID, Double price, Integer quantaty, Double discount) throws SQLException {

@@ -3,6 +3,7 @@ package onlineStore;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 
 import com.mysql.jdbc.Connection;
 
@@ -20,64 +21,71 @@ public class ProductDBHandler {
 
 	public void addOnlineProduct(String productID, float productPrice, int quantity, float discount,
 			 String storeID) throws SQLException {
-
-		/*
-	+--------------+--------------+------+-----+---------+-------+
-| Field        | Type         | Null | Key | Default | Extra |
-+--------------+--------------+------+-----+---------+-------+
-| PRODUCTNAME  | varchar(50)  | YES  |     | NULL    |       |
-| PRODUCTID    | varchar(100) | NO   | PRI | NULL    |       |
-| CATEGORYNAME | varchar(20)  | YES  | MUL | NULL    |       |
-| BRANDNAME    | varchar(50)  | YES  | MUL | NULL    |       |
-+--------------+--------------+------+-----+---------+-------+
-
-		 * 
-		 */
 		String getQuery = "select * from PRODUCT where PRODUCTID='"+productID+"';";
 		Statement stmtw = DB.createStatement();
 		ResultSet resultSet= stmtw.executeQuery(getQuery);
 		
 		String  productName;
-		String category;
-		String brand;
+		String category = null;
+		String brand=null;
 		
 		
 		while(resultSet.next()) {
-			
+			category = resultSet.getString("CATEGORYNAME");
+			brand= resultSet.getString("BRANDNAME");
 		}
 		String insertQuery = "INSERT INTO ONLINESTOREPRODUCT (PRODUCTID,ONLINESTORENAME,PRODUCTPRICE,"
-				+ "PRODUCTQUANTITY,PRODUCTDISCOUNT,numberOfViews,CATEGORYNAME)" + "VALUES " + "('"
-				+ (productID + storeID) + "', '" + storeID + "'," + "'" + productPrice + "','" + quantity + "','"
-				+ discount + "',0,'" + category + "');";
+				+ "PRODUCTQUANTITY,PRODUCTDISCOUNT,numberOfViews,BRANDNAME,CATEGORYNAME)" + "VALUES " + "('"
+				+ (productID + storeID) + "', '" + storeID + "','" + productPrice + "'," + quantity + ","
+				+ discount + ",0,'" +brand+"','"+ category + "');";
+		System.out.println("Creating statement...");
+		Statement stmt = DB.createStatement();
+		stmt.executeUpdate(insertQuery);
+
+	}
+
+	public void addOflineProduct(String productID, float productPrice, int quantity, float discount,
+			 String storeID) throws SQLException {
+		String getQuery = "select * from PRODUCT where PRODUCTID='"+productID+"';";
+		Statement stmtw = DB.createStatement();
+		ResultSet resultSet= stmtw.executeQuery(getQuery);
+		
+		String category = null;
+		String brand="";
+		
+		
+		while(resultSet.next()) {
+			category = resultSet.getString("CATEGORYNAME");
+			brand= resultSet.getString("BRANDNAME");
+		}
+		String insertQuery = "INSERT INTO OFFLINESTOREPRODUCT (PRODUCTID,OFFLINESTORENAME,PRODUCTPRICE,"
+				+ "PRODUCTQUANTITY,PRODUCTDISCOUNT,numberOfViews,BRANDNAME,CATEGORYNAME)" + "VALUES " + "('"
+				+ (productID + storeID) + "', '" + storeID + "','" + productPrice + "'," + quantity + ","
+				+ discount + ",0,'" +brand+"','"+ category + "');";
 		System.out.println("Creating statement...");
 		Statement stmt = DB.createStatement();
 
 		stmt.executeUpdate(insertQuery);
 
 	}
-
-	public void addOflineProduct(String productID, String productName, float productPrice, int quantity, float discount,
-			String category, String storeID) throws SQLException {
-
-		/*
-		 * | PRODUCTID | varchar(100) | NO | PRI | NULL | | | ONLINESTORENAME |
-		 * varchar(50) | NO | PRI | NULL | | | PRODUCTPRICE | float | YES | | NULL | | |
-		 * PRODUCTQUANTITY | int(11) | YES | | NULL | | | PRODUCTDISCOUNT | float | YES
-		 * | | NULL | | | numberOfViews | int(11) | YES | | NULL | | | CATEGORYNAME |
-		 * varchar(20) | YES | MUL | NULL
-		 * 
-		 */
-		String insertQuery = "INSERT INTO OFFLINESTOREPRODUCT (PRODUCTID,ONLINESTORENAME,PRODUCTPRICE,"
-				+ "PRODUCTQUANTITY,PRODUCTDISCOUNT,numberOfViews,CATEGORYNAME)" + "VALUES " + "('"
-				+ (productID + storeID) + "', '" + storeID + "'," + "'" + productPrice + "','" + quantity + "','"
-				+ discount + "',0,'" + category + "');";
-		System.out.println("Creating statement...");
-		Statement stmt = DB.createStatement();
-
-		stmt.executeUpdate(insertQuery);
-
+	public ArrayList<Product> getProducts() throws SQLException{
+		String query ="SELECT * FROM PRODUCT";
+		Statement stmtw = DB.createStatement();
+		ResultSet resultSet= stmtw.executeQuery(query);
+		
+		
+		ArrayList<Product> products = new ArrayList<>();
+		while(resultSet.next()) {
+			Product product = new Product();
+			product.name = resultSet.getString("CATEGORYNAME");
+			product.brandID= resultSet.getString("BRANDNAME");
+			product.category= resultSet.getString("CATEGORYNAME");
+			product.productID  = resultSet.getString("PRODUCTID");
+			product.tybe=resultSet.getBoolean("productType");
+			products.add(product);
+		}
+		return products;
 	}
-
 	public void updateView(String productID) {
 
 	}
@@ -122,4 +130,45 @@ public class ProductDBHandler {
 
 		stmt.executeUpdate(updateQuery);
 	}
+	public ArrayList<Product> onlineStoreProducts(String storeID) throws SQLException{
+		String query="SELECT * FROM ONLINESTOREPRODUCT WHERE ONLINESTORENAME ='"+storeID+"';";
+		Statement st = DB.createStatement();
+		ResultSet resultSet = st.executeQuery(query);
+		ArrayList<Product> products = new ArrayList<>();
+		while(resultSet.next()) {
+			Product product = new Product();
+			product.numberOfViews=resultSet.getString("numberOfViews");
+			product.name = resultSet.getString("CATEGORYNAME");
+			product.brandID= resultSet.getString("BRANDNAME");
+			product.category= resultSet.getString("CATEGORYNAME");
+			product.productID  = resultSet.getString("PRODUCTID");
+			product.quantaty=resultSet.getInt("PRODUCTQUANTITY");
+			products.add(product);
+		}
+		return products;
+	}
+	
+	public ArrayList<Product> offlineStoreProducts(String storeID) throws SQLException{
+		String query="SELECT * FROM OFFLINESTOREPRODUCT WHERE ONLINESTORENAME ='"+storeID+"';";
+		Statement st = DB.createStatement();
+		ResultSet resultSet = st.executeQuery(query);
+		ArrayList<Product> products = new ArrayList<>();
+		while(resultSet.next()) {
+			Product product = new Product();
+			product.numberOfViews=resultSet.getString("numberOfViews");
+			product.name = resultSet.getString("CATEGORYNAME");
+			product.brandID= resultSet.getString("BRANDNAME");
+			product.category= resultSet.getString("CATEGORYNAME");
+			product.productID  = resultSet.getString("PRODUCTID");
+			product.quantaty=resultSet.getInt("PRODUCTQUANTITY");
+			products.add(product);
+		}
+		return products;
+	}
+	
+	
+	
+	
+	
+	
 }

@@ -61,12 +61,12 @@ public class StoreOwnerView {
 					System.out.println("Enter the product ID : ");
 					String productID = input.next();
 					System.out.println("Enter the price : ");
-					Double price = input.nextDouble();
+					float price = input.nextFloat();
 					System.out.println("Enter the quantaty : ");
-					Integer quantaty = input.nextInt();
+					int quantaty = input.nextInt();
 					System.out.println("Enter the discount : ");
-					Double discount = input.nextDouble();
-					storeOwnerCntroller.AddProductToOnlineStore(storeID, productID, price, quantaty, discount);
+					float discount = input.nextFloat();
+					storeOwnerCntroller.AddProductToOnlineStore(storeID,productID,price,quantaty,discount);
 					System.out.println("1. Enter another product\n2. Quit");
 					in = input.nextInt();
 					if(in == 2)
@@ -82,11 +82,11 @@ public class StoreOwnerView {
 					System.out.println("Enter the product ID : ");
 					String productID = input.next();
 					System.out.println("Enter the price : ");
-					Double price = input.nextDouble();
+					float price = input.nextFloat();
 					System.out.println("Enter the quantaty : ");
-					Integer quantaty = input.nextInt();
+					int quantaty = input.nextInt();
 					System.out.println("Enter the discount : ");
-					Double discount = input.nextDouble();
+					float discount = input.nextFloat();
 					storeOwnerCntroller.AddProductToOfflineStore(storeID, productID, price, quantaty, discount);
 					System.out.println("1. Enter another product\n2. Quit");
 					in = input.nextInt();
@@ -114,6 +114,7 @@ public class StoreOwnerView {
 			}
 		}
 		}catch(SQLException e) {
+			e.printStackTrace();
 			System.out.println("some thing went wrong");
 			storeOwnerCntroller = null;
 		}

@@ -41,11 +41,12 @@ public class StoreOwner {
 		return true;
 	}
 	
-	public void AddProductToOnlineStore(String storeID, String productID, Double price, Integer quantaty, Double discount) throws SQLException {
-		productDBHandler.addOflineProduct(productID, productName, productPrice, quantity, discount, category, storeID);
+	
+	public void AddProductToOnlineStore(String storeID, String productID, float price, int quantaty, float discount) throws SQLException {
+		productDBHandler.addOnlineProduct(productID, price, quantaty, discount, storeID);
 	}
 	
-	public void AddProductToOfflineStore(String storeID, String productID, Double price, Integer quantaty, Double discount) throws SQLException {
+	public void AddProductToOfflineStore(String storeID, String productID, float price, int quantaty, float discount) throws SQLException {
 		productDBHandler.addOflineProduct(productID, price, quantaty, discount, storeID);
 	}
 	
@@ -58,7 +59,7 @@ public class StoreOwner {
 	}
 	
 	public ArrayList<Product> GetAllProducts(){
-		return null;   //nadi 3la el data base
+		return storeOwnerDBHandler.getProducts();   //nadi 3la el data base
 	}
 	
 	public void UpdateProduct(String storeID, String productID, Double price, Integer quantaty, Double discount) throws SQLException {

@@ -17,8 +17,8 @@ public class Main {
 				StoreOwnerView storeOwner = new StoreOwnerView();
 				while(storeOwner.ViewStoreOwner());
 			}else if(in == 3) {
-//				CustomerView customer = new CustomerView();
-//				while(customer.ViewCustomer());
+				CustomerView customer = new CustomerView();
+				while(customer.ViewCustomer());
 			}else if(in == 4){
 				input.close();
 				return;

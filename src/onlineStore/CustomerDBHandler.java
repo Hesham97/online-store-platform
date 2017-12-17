@@ -1,14 +1,13 @@
 package onlineStore;
 
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
 import com.mysql.jdbc.Connection;
 
 public class CustomerDBHandler {
-
 	private Connection DB;
-
 	public CustomerDBHandler() {
 		try {
 			DB = SingletonDB.getDB().getConnection();
@@ -17,33 +16,42 @@ public class CustomerDBHandler {
 			e.printStackTrace();
 		}
 	}
-	
-	/*
-+---------------------+--------------+------+-----+---------+-------+
-| Field               | Type         | Null | Key | Default | Extra |
-+---------------------+--------------+------+-----+---------+-------+
-| CUSTOMERFNAME       | varchar(15)  | YES  |     | NULL    |       |
-| CUSTOMERUSERNAME    | varchar(20)  | NO   | PRI | NULL    |       |
-| CUSTOMERSNAME2      | varchar(15)  | YES  |     | NULL    |       |
-| CUSTOMERE_MAIL      | varchar(100) | YES  |     | NULL    |       |
-| CUSTOMERPASSWORD    | varchar(100) | YES  |     | NULL    |       |
-| CUSTOMERPHONENUMBER | varchar(12)  | YES  |     | NULL    |       |
-+---------------------+--------------+------+-----+---------+-------+
-	 */
-/*	String insertQuery ="INSERT INTO CUSTOMER (CUSTOMERFNAME,CUSTOMERUSERNAME,CUSTOMERSNAME2"
-			+ "CUSTOMERE_MAIL,CUSTOMERPASSWORD,CUSTOMERPHONENUMBER VALUES('"+_name
-			+"','"+_userName+"','"+_name2+"','"+email+"','"+_password+"','";
-	Statement stmt = DB.createStatement();
-	stmt.executeUpdate(insertQuery);*/
-	public void addCustomer(String CUSTOMERFNAME, String CUSTOMERUSERNAME, 
-			String CUSTOMERSNAME2, String CUSTOMERE_MAIL,
+	public void addCustomer(String CUSTOMERFNAME, String CUSTOMERUSERNAME, String CUSTOMERSNAME2, String CUSTOMERE_MAIL,
 			String CUSTOMERPASSWORD, String CUSTOMERPHONENUMBER) throws SQLException {
-		
+
 		String insertQuery = "INSERT INTO CUSTOMER (CUSTOMERFNAME,CUSTOMERUSERNAME,"
-				+ "CUSTOMERSNAME2,CUSTOMERE_MAIL,CUSTOMERPASSWORD,CUSTOMERPHONENUMBER) "
-				+ "values ('"+CUSTOMERFNAME+"','"+ CUSTOMERUSERNAME+"','"+CUSTOMERSNAME2+
-				"','"+CUSTOMERE_MAIL+"','"+CUSTOMERPASSWORD+"','"+CUSTOMERPHONENUMBER+"');";
+				+ "CUSTOMERSNAME2,CUSTOMERE_MAIL,CUSTOMERPASSWORD,CUSTOMERPHONENUMBER) " + "values ('" + CUSTOMERFNAME
+				+ "','" + CUSTOMERUSERNAME + "','" + CUSTOMERSNAME2 + "','" + CUSTOMERE_MAIL + "','" + CUSTOMERPASSWORD
+				+ "','" + CUSTOMERPHONENUMBER + "');";
 		Statement stmt = DB.createStatement();
 		stmt.executeUpdate(insertQuery);
+	}
+	public Customer SignInByEmail(String identifier, String password) throws SQLException {
+		String query = "SELECT * FROM CUSTOMER WHERE CUSTOMERE_MAIL ='" + identifier + "' AND CUSTOMERPASSWORD ='"
+				+ password + "'";
+		Statement stmt = DB.createStatement();
+		ResultSet resultSet = stmt.executeQuery(query);
+		Customer customer= new Customer();
+		while (resultSet.next()) {
+			customer.firstName=resultSet.getString("CUSTOMERFNAME");
+			customer.email=resultSet.getString("CUSTOMERE_MAIL");
+			customer.phoneNumber=resultSet.getString("CUSTOMERPHONENUMBER");
+			customer.userName=resultSet.getString("CUSTOMERUSERNAME");
+		}
+		return customer;
+	}
+	public Customer SignInByUserName(String identifier, String password) throws SQLException {
+		String query = "SELECT * FROM CUSTOMER WHERE CUSTOMERUSERNAME ='" + identifier + "' AND CUSTOMERPASSWORD ='"
+				+ password + "'";
+		Statement stmt = DB.createStatement();
+		ResultSet resultSet = stmt.executeQuery(query);
+		Customer customer= new Customer();
+		while (resultSet.next()) {
+			customer.firstName=resultSet.getString("CUSTOMERFNAME");
+			customer.email=resultSet.getString("CUSTOMERE_MAIL");
+			customer.phoneNumber=resultSet.getString("CUSTOMERPHONENUMBER");
+			customer.userName=resultSet.getString("CUSTOMERUSERNAME");
+		}
+		return customer;
 	}
 }

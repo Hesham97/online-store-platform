@@ -1,6 +1,6 @@
 package onlineStore;
 
-import java.sql.SQLException;
+//import java.sql.SQLException;
 
 public class CustomerView {
 	public Boolean ViewCustomer() {

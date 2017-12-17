@@ -17,12 +17,16 @@ public class AdminController {
 		admin.AddBrand(brandName, companyName);
 	}
 	
-	public void AddProduct(String name, String productID , String brandID, String category) throws SQLException {
-		admin.AddProduct(name , productID , brandID, category);
+	public void AddProduct(String name, String productID , String brandID, String category,boolean type) throws SQLException {
+		admin.AddProduct(name , productID , brandID, category,type);
 	}
 	
-	public void AddVoucherCard(String serialNumber,float value,int quantity){
-		admin.AddVoucherCard(serialNumber,value,quantity);
+	public void AddVoucherCard(String serialNumber, float value, int quantity) throws SQLException {
+		admin.AddVoucherCard(serialNumber, value, quantity);
+	}
+	
+	public void assignVoucher(String serialNumber,String customerUseName) throws SQLException {
+		admin.assignVoucher(serialNumber,customerUseName);
 	}
 	
 	public void DeleteProduct(String productID) throws SQLException {

@@ -1,7 +1,6 @@
 package onlineStore;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.List;
 
 public class StoreOwner {
 
@@ -56,16 +55,21 @@ public class StoreOwner {
 		storeOwnerDBHandler.createOffilneStore(name, storeOwnerUserName, address);
 	}
 	
-	public ArrayList<Product> GetAllProducts(){
-		return storeOwnerDBHandler.getProducts();   //nadi 3la el data base
+	public ArrayList<Product> GetAllProducts() throws SQLException {
+		return productDBHandler.getProducts();
 	}
 	
-	public ArrayList<Product> getProducts(String storeID){
-		return getProducts(storeID);
+	public ArrayList<Product> getProducts(String storeID,boolean storeType) throws SQLException {
+		ArrayList<Product> products = null;
+		if(!storeType)
+			productDBHandler.onlineStoreProducts (storeID);
+		else
+			productDBHandler.offlineStoreProducts (storeID);
+		return products;
 	}
 	
-	public ArrayList<Product> GetTheMostViewedProduct (String storeID) {
-		ArrayList<Product> products = getProducts(storeID);
+	public ArrayList<Product> GetTheMostViewedProduct (String storeID,boolean storeType)  throws SQLException {
+		ArrayList<Product> products = getProducts(storeID,storeType);
 		ArrayList<Product> returnProducts = new ArrayList<Product>();
 		
 		int index = -1;

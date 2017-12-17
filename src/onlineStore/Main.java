@@ -20,6 +20,7 @@ public class Main {
 //				CustomerView customer = new CustomerView();
 //				while(customer.ViewCustomer());
 			}else if(in == 4){
+				input.close();
 				return;
 			}else {
 				System.out.println("wrong input");

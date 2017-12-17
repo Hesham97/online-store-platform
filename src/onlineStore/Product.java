@@ -20,6 +20,7 @@ public class Product {
   public int Sales;
   
   public boolean tybe;
+ 
   public int numberOfViews;
 
   public Product[] Search(Double price, String brandID, String category, String name, Boolean bestsales) {

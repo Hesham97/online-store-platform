@@ -6,7 +6,11 @@ import java.util.ArrayList;
 public class StoreOwnerCntroller {
 	
 	StoreOwner storeOwner = new StoreOwner();
-
+	
+	public boolean IsPremium() {
+		return storeOwner.premium;
+	}
+	
 	public void SignUp(String _name ,String _userName ,String _password , String _phoneNumber , String _address , String _premium) throws SQLException {
 		storeOwner.SignUp(_name ,_userName,_password,_phoneNumber,_address,_premium);
 	}
@@ -33,23 +37,17 @@ public class StoreOwnerCntroller {
 		storeOwner.AddOfflineStore(name, storeOwnerUserName, address);
 	}
 	
-	public ArrayList<Product> GetAllProducts(){
+	public ArrayList<Product> GetAllProducts() throws SQLException{
 		ProductDBHandler dbHandler = new ProductDBHandler();
-		try {
-			return dbHandler.getProducts();
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-			return null;
-		}
+		return dbHandler.getProducts();
 	}
 	
-	public ArrayList<Product> getProducts(String storeID){
-		return storeOwner.getProducts(storeID);
+	public ArrayList<Product> getProducts(String storeID,boolean storeType) throws SQLException{
+		return storeOwner.getProducts(storeID,storeType);
 	}
 	
-	public ArrayList<Product> GetTheMostViewedProduct(String storeID){
-		return storeOwner.GetTheMostViewedProduct(storeID);
+	public ArrayList<Product> GetTheMostViewedProduct(String storeID , boolean storeType) throws SQLException{
+		return storeOwner.GetTheMostViewedProduct(storeID,storeType);
 	}
 	
 	public void UpdateProduct(String storeID, String productID, Double price, Integer quantaty, Double discount) throws SQLException {

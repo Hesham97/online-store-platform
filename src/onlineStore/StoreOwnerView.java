@@ -159,6 +159,10 @@ public class StoreOwnerView {
 	}
 
 	void PrintProducts(ArrayList<Product> products) {
+		if(products == null){
+			System.out.println("there is no products");
+			return;
+		}
 		for (int i = 0; i < products.size(); i++) {
 			System.out.println("product id : " + products.get(i).productID + " ,name : " + products.get(i).name
 					+ " ,category : " + products.get(i).category);
@@ -166,6 +170,10 @@ public class StoreOwnerView {
 	}
 
 	void PrintProductsWithViews(ArrayList<Product> products) {
+		if(products == null){
+			System.out.println("there is no products");
+			return;
+		}
 		for (int i = 0; i < products.size(); i++) {
 			System.out.println("product id : " + products.get(i).productID + " ,name : " + products.get(i).name
 					+ " ,category : " + products.get(i).category + ", Views : " + products.get(i).numberOfViews);

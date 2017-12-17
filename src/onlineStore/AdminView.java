@@ -89,7 +89,7 @@ public class AdminView {
 					do {
 						System.out.print("Enter the serial number : ");
 						serialNumber = input.next();
-					}while(serialNumber.length()>0 && serialNumber.length()<6);
+					}while(serialNumber.length()<0 || serialNumber.length()>6);
 					System.out.print("Enter the value : ");
 					float value;
 					value = input.nextFloat();

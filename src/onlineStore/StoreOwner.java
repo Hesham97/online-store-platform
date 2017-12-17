@@ -33,7 +33,6 @@ public class StoreOwner {
 		phoneNumber = storeOwner.phoneNumber;
 		address = storeOwner.address;
 		premium = storeOwner.premium;
-		//storeList = storeOwner.storeList;
 		balance = storeOwner.balance;
 		return true;
 	}

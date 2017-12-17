@@ -19,11 +19,11 @@ public class OfflineStoreDBHandler {
 		}
 	}
 
-	public ArrayList<OfflineStore> getStores(String stowerOwnerID) throws SQLException {
-		String query = "SELECT * FROM OFFLINESTORE WHERE STOREOWNERUSERNAME='" + stowerOwnerID + "';";
+	public ArrayList<OfflineStore> getStores() throws SQLException {
+		String query = "SELECT * FROM OFFLINESTORE ";
 		Statement stmt = (Statement) DB.createStatement();
 		ResultSet resultSet = stmt.executeQuery(query);
-		ArrayList<OfflineStore> stores = new ArrayList<>();
+		ArrayList<OfflineStore> stores = new ArrayList<OfflineStore>();
 		while (resultSet.next()) {
 			OfflineStore store = new OfflineStore();
 			store.name = resultSet.getString("OFFLINESTORENAME");

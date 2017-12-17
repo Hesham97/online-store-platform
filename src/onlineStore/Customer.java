@@ -23,6 +23,8 @@ public class Customer {
 
 	CustomerDBHandler customerDBHandler = new CustomerDBHandler();
 	ProductDBHandler productDBHandler = new ProductDBHandler();
+	OfflineStoreDBHandler offlineStoreDBHandler = new OfflineStoreDBHandler();
+	OnlineStoreDBHandler onlineStoreDBHandler = new OnlineStoreDBHandler();
 	
   	public boolean SignIn(String identifier, String password) throws SQLException {
   		Customer customer = null;
@@ -65,6 +67,13 @@ public class Customer {
     	 Matcher matcher = VALID_EMAIL_ADDRESS_REGEX .matcher(emailStr);
     	 return matcher.find();
     }
+    
+    public ArrayList<OfflineStore> getofflineStores() throws SQLException {
+		return offlineStoreDBHandler.getStores();
+	}
+    public ArrayList<OnlineStore> getonlineStores() throws SQLException {
+		return onlineStoreDBHandler.getStores();
+	}
 
 	
   	public Integer AddToCart(String ProductID) {return null;}
@@ -82,6 +91,8 @@ public class Customer {
   	public Boolean PayWithVisa(Double price) {return null;}
 
   	public Boolean PayWithV(Double price) {return null;}
+
+	
 
 //  	public Cart ViewCart() {return null;}		
 //  	public void SignUp() {}

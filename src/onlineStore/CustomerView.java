@@ -53,6 +53,10 @@ public class CustomerView {
 						+ "3. Suggest product\n4. signout");
 				in = input.nextInt();
 				if(in == 1) {
+					System.out.println("Online stores");
+					Printonstore(_customertController.getonlineStores());
+					System.out.println("Offline stores");
+					Printoffstore(_customertController.getStores());
 					int type;
 					do {
 						System.out.println("1. online store\n2. offline store");
@@ -116,6 +120,26 @@ public class CustomerView {
 		for (int i = 0; i < products.size(); i++) {
 			System.out.println("product id : " + products.get(i).productID + " ,name : " + products.get(i).name
 					+ " ,category : " + products.get(i).category);
+		}
+	}
+	
+	void Printoffstore(ArrayList<OfflineStore> store) {
+		if(store == null){
+			System.out.println("there is no offline stores");
+			return;
+		}
+		for (int i = 0; i < store.size(); i++) {
+			System.out.println("store id : " + store.get(i).name);
+		}
+	}
+	
+	void Printonstore(ArrayList<OnlineStore> store) {
+		if(store == null){
+			System.out.println("there is no online stores");
+			return;
+		}
+		for (int i = 0; i < store.size(); i++) {
+			System.out.println("store id : " + store.get(i).name);
 		}
 	}
 }

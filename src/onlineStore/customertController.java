@@ -16,7 +16,15 @@ public class customertController {
   	
   	public ArrayList<Product> getProducts(String storeID, boolean type) throws SQLException {
   		return customer.getProducts(storeID, type);
-  	};
+  	}
+  	
+  	public ArrayList<OfflineStore> getStores() throws SQLException {
+  		return customer.getofflineStores();
+  	}
+  	
+  	public ArrayList<OnlineStore> getonlineStores() throws SQLException {
+  		return customer.getonlineStores();
+ 	}
   	
   public String AddToCart(String ProductID){return null;}
 

@@ -43,7 +43,15 @@ public class StoreOwnerCntroller {
 			return null;
 		}
 	}
-
+	
+	public ArrayList<Product> getProducts(String storeID){
+		return storeOwner.getProducts(storeID);
+	}
+	
+	public ArrayList<Product> GetTheMostViewedProduct(String storeID){
+		return storeOwner.GetTheMostViewedProduct(storeID);
+	}
+	
 	public void UpdateProduct(String storeID, String productID, Double price, Integer quantaty, Double discount) throws SQLException {
 
 	}

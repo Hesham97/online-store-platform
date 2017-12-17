@@ -17,8 +17,6 @@ public class StoreOwner {
   
 	public Boolean premium;
 
-	//public List<String> storeList;
-
 	public Double balance;
 	
 	StoreOwnerDBHandler storeOwnerDBHandler = new StoreOwnerDBHandler();
@@ -60,6 +58,30 @@ public class StoreOwner {
 	
 	public ArrayList<Product> GetAllProducts(){
 		return storeOwnerDBHandler.getProducts();   //nadi 3la el data base
+	}
+	
+	public ArrayList<Product> getProducts(String storeID){
+		return getProducts(storeID);
+	}
+	
+	public ArrayList<Product> GetTheMostViewedProduct (String storeID) {
+		ArrayList<Product> products = getProducts(storeID);
+		ArrayList<Product> returnProducts = new ArrayList<Product>();
+		
+		int index = -1;
+		for(int i = 0 ; i < products.size() ; i++) {
+			if(index == -1 || products.get(i).numberOfViews > products.get(index).numberOfViews) {
+				index = i;
+			}
+		}
+		
+		for(int i = 0 ; i < products.size() ; i++) {
+			if(products.get(i).numberOfViews == products.get(index).numberOfViews) {
+				returnProducts.add(products.get(i));
+			}
+		}
+		
+		return returnProducts;
 	}
 	
 	public void UpdateProduct(String storeID, String productID, Double price, Integer quantaty, Double discount) throws SQLException {

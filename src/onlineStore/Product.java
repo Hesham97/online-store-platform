@@ -5,19 +5,22 @@ public class Product {
 
   public String brandID;
 
-  public Double Price;
+  public float Price;
 
   public String productID;
 
   public String category;
 
-  public Integer quantaty;
+  public int quantaty;
 
   public String storeID;
 
-  public Double discount;
+  public float discount;
 
-  public Integer Sales;
+  public int Sales;
+  
+  public boolean tybe;
+  public int numberOfViews;
 
   public Product[] Search(Double price, String brandID, String category, String name, Boolean bestsales) {
   return null;

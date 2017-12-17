@@ -22,6 +22,10 @@ public class Admin {
   public void AddProduct(String name, String productID , String brandID, String category) throws SQLException {
 	  adminDBHandler.addProduct(name,productID,brandID,category);
   }
+  
+  public void AddVoucherCard(String serialNumber,float value,int quantity){
+	  adminDBHandler.AddVoucherCard(serialNumber,value,quantity);
+  }
 
   public void DeleteProduct(String productID) throws SQLException {
 	   

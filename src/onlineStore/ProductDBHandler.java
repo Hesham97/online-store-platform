@@ -137,7 +137,7 @@ public class ProductDBHandler {
 		ArrayList<Product> products = new ArrayList<>();
 		while(resultSet.next()) {
 			Product product = new Product();
-			product.numberOfViews=resultSet.getString("numberOfViews");
+			product.numberOfViews=resultSet.getInt("numberOfViews");
 			product.name = resultSet.getString("CATEGORYNAME");
 			product.brandID= resultSet.getString("BRANDNAME");
 			product.category= resultSet.getString("CATEGORYNAME");
@@ -155,7 +155,7 @@ public class ProductDBHandler {
 		ArrayList<Product> products = new ArrayList<>();
 		while(resultSet.next()) {
 			Product product = new Product();
-			product.numberOfViews=resultSet.getString("numberOfViews");
+			product.numberOfViews=resultSet.getInt("numberOfViews");
 			product.name = resultSet.getString("CATEGORYNAME");
 			product.brandID= resultSet.getString("BRANDNAME");
 			product.category= resultSet.getString("CATEGORYNAME");

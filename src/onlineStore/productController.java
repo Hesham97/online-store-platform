@@ -7,6 +7,10 @@ public class productController {
 
 	ProductDBHandler productDBHandler = new ProductDBHandler();
 	
+	public void SuggestProduct(String productName, String productID, String brand, String category, boolean type) {
+		
+	}
+	
 	public ArrayList<Product> Search(float price, String brandID, String category, String name) throws SQLException {
 		ArrayList<Product> product = null;
 		ArrayList<Product> productprice = null;

@@ -52,9 +52,9 @@ public class Customer {
   	public ArrayList<Product> getProducts(String storeID,boolean storeType) throws SQLException {
 		ArrayList<Product> products = null;
 		if(!storeType)
-			productDBHandler.onlineStoreProducts (storeID);
+			products = productDBHandler.onlineStoreProducts (storeID);
 		else
-			productDBHandler.offlineStoreProducts (storeID);
+			products = productDBHandler.offlineStoreProducts (storeID);
 		return products;
 	}
   	

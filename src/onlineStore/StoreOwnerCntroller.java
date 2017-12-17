@@ -50,21 +50,13 @@ public class StoreOwnerCntroller {
 		return storeOwner.GetTheMostViewedProduct(storeID,storeType);
 	}
 	
-	public void UpdateProduct(String storeID, String productID, Double price, Integer quantaty, Double discount) throws SQLException {
+	public void UpdateProduct(String storeID, String productID, Double price, Integer quantaty, Double discount) throws SQLException {}
 
-	}
+	public void DeleteProduct(String storeID, String productID) throws SQLException{}
 
-	public void DeleteProduct(String storeID, String productID) throws SQLException{
-		
-	}
+	public void DeleteStore(String StoreID) throws SQLException {}
 
-	public void DeleteStore(String StoreID) throws SQLException {
-		
-	}
-
-	public void UpdateStore() throws SQLException {
-	  
-	}
+	public void UpdateStore() throws SQLException {}
 
 //  public Stat GetStat(){
 //	  return null;

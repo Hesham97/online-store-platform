@@ -20,8 +20,6 @@ public class StoreOwnerDBHandler {
 	}
 	
 	public void createOffilneStore(String storeName, String ownerUserName, String storeAddress) throws SQLException {
-		
-		
 		String insertQuery = "INSERT INTO OFFLINESTORE (OFFLINESTORENAME,STOREOWNERUSERNAME" + ",OFFLINESTOREADDRESS)"
 				+ "VALUES " + "('" + storeName + "', '" + ownerUserName + "','" + storeAddress + "');";
 		// System.out.println("Creating statement...");

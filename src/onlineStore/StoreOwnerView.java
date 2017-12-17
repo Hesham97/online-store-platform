@@ -40,6 +40,13 @@ public class StoreOwnerView {
 					String _address = input.next();
 					System.out.println("Enter the premuim : ");
 					String _premuim = input.next();
+					int type;
+					do {
+						System.out.println("1. online store\n2. offline store");
+						type = input.nextInt();
+						if(type > 2 || type < 1)
+							System.out.println("wrong input");
+					}while(type > 2 || type < 1);
 					storeOwnerCntroller = new StoreOwnerCntroller();
 					storeOwnerCntroller.SignUp(_name, _userName, _password, _phoneNumber, _address, _premuim);
 					storeOwnerCntroller = null;
@@ -53,7 +60,8 @@ public class StoreOwnerView {
 						+ "\n3. add online store\n4. add offline store\n"
 						+ "5. Explore number of views to each product in a store 'premium only'\n"
 						+ "6. Get the most viewed product 'premium only'\n"
-						+ "7. Explore products in store\n8. View specific product details\n9. signout");
+						+ "7. Explore products in store\n8. View specific product details\n9. Suggest product"
+						+ "\n10. signout");
 				in = input.nextInt();
 				if (in == 1) {
 					ArrayList<Product> systemProduct = storeOwnerCntroller.GetAllProducts();
@@ -169,7 +177,20 @@ public class StoreOwnerView {
 					String name = input.next();
 					ArrayList<Product> products = _productController.Search(price, brandID, category, name);
 					PrintProducts(products);
-				}else if (in == 9) {
+				}else if(in == 9){
+					String productName = input.next();
+					String productID = input.next();
+					String brand = input.next();
+					String category = input.next();
+					int type;
+					do {
+						System.out.println("1. online store\n2. offline store");
+						type = input.nextInt();
+						if(type > 2 || type < 1)
+							System.out.println("wrong input");
+					}while(type > 2 || type < 1);
+					_productController.SuggestProduct(productName,productID,brand,category,(type == 1)?false:true);
+				}else if (in == 10) {
 					return false;
 				} else {
 					System.out.println("Wrong input !");

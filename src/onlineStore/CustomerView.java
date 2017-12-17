@@ -49,7 +49,8 @@ public class CustomerView {
 					System.out.println("Wrong input !");
 				}
 			}else {
-				System.out.println("1. Explore products in store\n2. View specific product details\n3. signout");
+				System.out.println("1. Explore products in store\n2. View specific product details\n"
+						+ "3. Suggest product\n4. signout");
 				in = input.nextInt();
 				if(in == 1) {
 					int type;
@@ -75,6 +76,19 @@ public class CustomerView {
 					ArrayList<Product> products = _productController.Search(price, brandID, category, name);
 					PrintProducts(products);
 				}else if(in == 3){
+					String productName = input.next();
+					String productID = input.next();
+					String brand = input.next();
+					String category = input.next();
+					int type;
+					do {
+						System.out.println("1. online store\n2. offline store");
+						type = input.nextInt();
+						if(type > 2 || type < 1)
+							System.out.println("wrong input");
+					}while(type > 2 || type < 1);
+					_productController.SuggestProduct(productName,productID,brand,category,(type == 1)?false:true);
+				}else if(in == 4){
 					return false;
 				}else{
 					System.out.println("Wrong input !");

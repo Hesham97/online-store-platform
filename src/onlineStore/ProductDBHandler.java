@@ -166,9 +166,53 @@ public class ProductDBHandler {
 		return products;
 	}
 	
+	private ArrayList<Product> returnProudct(String query) throws SQLException{
+		Statement st = DB.createStatement();
+		ResultSet resultSet = st.executeQuery(query);
+		ArrayList<Product> products = new ArrayList<>();
+		while(resultSet.next()) {
+			Product product = new Product();
+			product.numberOfViews=resultSet.getInt("numberOfViews");
+			product.name = resultSet.getString("CATEGORYNAME");
+			product.brandID= resultSet.getString("BRANDNAME");
+			product.category= resultSet.getString("CATEGORYNAME");
+			product.productID  = resultSet.getString("PRODUCTID");
+			product.quantaty=resultSet.getInt("PRODUCTQUANTITY");
+			products.add(product);
+		}
+		return products;
+	}
 	
+	public ArrayList<Product> getProductByPrice(float producrPrice ) throws SQLException{
+		String query = 	"SELECT * FROM ONLINESTOREPRODUCT WHERE PRODUCTPRICE="+producrPrice+";";
+		String _query= 	"SELECT * FROM OFFLINESTOREPRODUCT WHERE PRODUCTPRICE="+producrPrice+";";
+
+		ArrayList<Product>proudcts = returnProudct(query);
+		proudcts.addAll(returnProudct(_query));
+		return proudcts;	
+	}
 	
+	public ArrayList<Product> getProductByName(String name )throws SQLException{
+		String query = 	"SELECT * FROM ONLINESTOREPRODUCT WHERE ONLINESTORENAME='"+name+"';";
+		String _query= 	"SELECT * FROM OFFLINESTOREPRODUCT WHERE OFFLINESTORENAME='"+name+"';";
+		ArrayList<Product>proudcts = returnProudct(query);
+		proudcts.addAll(returnProudct(_query));
+		return proudcts;	
+	}
 	
-	
+	public ArrayList<Product> getProductByCategory(String category )throws SQLException{
+		String query = 	"SELECT * FROM ONLINESTOREPRODUCT WHERE CATEGORYNAME='"+category+"';";
+		String _query= 	"SELECT * FROM OFFLINESTOREPRODUCT WHERE CATEGORYNAME='"+category+"';";
+		ArrayList<Product>proudcts = returnProudct(query);
+		proudcts.addAll(returnProudct(_query));
+		return proudcts;	
+	}
+	public ArrayList<Product> getProductByBrand(String brandName )throws SQLException{
+		String query = 	"SELECT * FROM ONLINESTOREPRODUCT WHERE BRANDNAME='"+brandName+"';";
+		String _query= "SELECT * FROM OFFLINESTOREPRODUCT WHERE BRANDNAME='"+brandName+"';";	
+		ArrayList<Product>proudcts = returnProudct(query);
+		proudcts.addAll(returnProudct(_query));
+		return proudcts;	
+	}
 	
 }

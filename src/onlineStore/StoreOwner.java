@@ -71,19 +71,21 @@ public class StoreOwner {
 		ArrayList<Product> products = getProducts(storeID,storeType);
 		ArrayList<Product> returnProducts = new ArrayList<Product>();
 		
-		int index = -1;
-		for(int i = 0 ; i < products.size() ; i++) {
-			if(index == -1 || products.get(i).numberOfViews > products.get(index).numberOfViews) {
-				index = i;
+		if(products != null) {
+			int index = -1;
+			for(int i = 0 ; i < products.size() ; i++) {
+				if(index == -1 || products.get(i).numberOfViews > products.get(index).numberOfViews) {
+					index = i;
+				}
 			}
-		}
-		
-		for(int i = 0 ; i < products.size() ; i++) {
-			if(products.get(i).numberOfViews == products.get(index).numberOfViews) {
-				returnProducts.add(products.get(i));
+			
+			for(int i = 0 ; i < products.size() ; i++) {
+				if(products.get(i).numberOfViews == products.get(index).numberOfViews) {
+					returnProducts.add(products.get(i));
+				}
 			}
-		}
-		
+		}else
+			returnProducts = null;
 		return returnProducts;
 	}
 	

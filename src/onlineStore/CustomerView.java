@@ -6,7 +6,8 @@ import java.util.Scanner;
 
 public class CustomerView {
 	
-	customertController _customertController = new customertController();
+	customertController _customertController = null;
+	productController _productController = new productController();
 	
 	public Boolean ViewCustomer() {
 		int in;
@@ -14,7 +15,7 @@ public class CustomerView {
 		Scanner input = new Scanner(System.in);
 		try {
 			if(_customertController == null) {
-				System.out.println("1. signin\n2. close");
+				System.out.println("1. signin\n2. signup\n3. close");
 				in = input.nextInt();
 				if(in == 1) {
 					_customertController = new customertController();
@@ -48,7 +49,7 @@ public class CustomerView {
 					System.out.println("Wrong input !");
 				}
 			}else {
-				System.out.println("1. Explore products in store\n6. signout");
+				System.out.println("1. Explore products in store\n2. View specific product details\n3. signout");
 				in = input.nextInt();
 				if(in == 1) {
 					int type;
@@ -62,7 +63,18 @@ public class CustomerView {
 					String storeID = input.next();
 					ArrayList<Product> products = _customertController.getProducts(storeID,(type == 1)?false:true);
 					PrintProducts(products);
-				}else if(in == 6){
+				}else if(in == 2){
+					System.out.println("Enter the price : ");
+					float price = input.nextInt();
+					System.out.println("Enter the brand ID : ");
+					String brandID = input.next();
+					System.out.println("Enter the category : ");
+					String category = input.next();
+					System.out.println("Enter the name : ");
+					String name = input.next();
+					ArrayList<Product> products = _productController.Search(price, brandID, category, name);
+					PrintProducts(products);
+				}else if(in == 3){
 					return false;
 				}else{
 					System.out.println("Wrong input !");

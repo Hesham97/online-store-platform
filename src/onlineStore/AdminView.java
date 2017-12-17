@@ -7,6 +7,7 @@ import java.util.Scanner;
 public class AdminView {
 	
 	AdminController adminController = null;
+	productController _productController = new productController();
 	
 	public Boolean ViewAdmin() {
 		int in;
@@ -35,7 +36,7 @@ public class AdminView {
 			}else {
 				System.out.println("1. add brand\n2. add product\n"
 						+ "3. add voucher card\n4. provide voucher cards\n"
-						+ "5. Explore products in store\n6. signout");
+						+ "5. Explore products in store\n6. View specific product details\n7. signout");
 				in = input.nextInt();
 				if(in == 1) {
 					System.out.print("Enter the brand name : ");
@@ -100,6 +101,17 @@ public class AdminView {
 					ArrayList<Product> products = adminController.getProducts(storeID,(type == 1)?false:true);
 					PrintProducts(products);
 				}else if(in == 6){
+					System.out.println("Enter the price : ");
+					float price = input.nextInt();
+					System.out.println("Enter the brand ID : ");
+					String brandID = input.next();
+					System.out.println("Enter the category : ");
+					String category = input.next();
+					System.out.println("Enter the name : ");
+					String name = input.next();
+					ArrayList<Product> products = _productController.Search(price, brandID, category, name);
+					PrintProducts(products);
+				}else if(in == 7){
 					return false;
 				}else{
 					System.out.println("Wrong input !");

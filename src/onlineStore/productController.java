@@ -18,6 +18,7 @@ public class productController {
 		
 		if(brandID != "") {
 			productbrand = productDBHandler.getProductByBrand(brandID);
+			if(productbrand == null)return null;
 			SortByID(productbrand);
 			if(!start) {
 				product = productbrand;
@@ -26,31 +27,34 @@ public class productController {
 		}
 		if(price != -1) {
 			productprice = productDBHandler.getProductByPrice(price);
+			if(productprice == null)return null;
 			SortByID(productprice);
 			if(!start) {
 				product = productprice;
 			}else {
-				
+				AddExist(product,productprice);
 			}
 			start = true;
 		}
 		if(category != "") {
 			productcategory = productDBHandler.getProductByCategory(category);
+			if(productcategory == null)return null;
 			SortByID(productcategory);
 			if(!start) {
 				product = productcategory;
 			}else {
-				
+				AddExist(product,productcategory);
 			}
 			start = true;
 		}
 		if(name != "") {
 			productname = productDBHandler.getProductByName(name);
+			if(productname == null)return null;
 			SortByID(productname);
 			if(!start) {
 				product = productname;
 			}else {
-				
+				AddExist(product,productname);
 			}
 			start = true;
 		}
@@ -60,14 +64,20 @@ public class productController {
 	
 	private void AddExist(ArrayList<Product> from ,ArrayList<Product> to) {
 		for(int i = 0 ; i < from.size() ; i++) {
+			boolean founded = false;
 			for(int j = 0 ; j < to.size() ; j++) {
 				if(from.get(i).productID == to.get(j).productID)
 				{
-					to.remove(j);
+					founded = true;
 					break;
 				}
 			}
+			if(!founded) {
+				from.remove(i);
+			}
 		}
+		
+		
 	}
 	
 	private void SortByID(ArrayList<Product> list) {
@@ -81,6 +91,7 @@ public class productController {
 			}
 		}
 	}
+	
 //
 //  public Product ViewProduct(String prouctID);
 //

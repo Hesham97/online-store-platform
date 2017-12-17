@@ -7,6 +7,7 @@ import java.util.Scanner;
 public class StoreOwnerView {
 
 	StoreOwnerCntroller storeOwnerCntroller = null;
+	productController _productController = new productController();
 
 	public Boolean ViewStoreOwner() {
 		int in;
@@ -52,7 +53,7 @@ public class StoreOwnerView {
 						+ "\n3. add online store\n4. add offline store\n"
 						+ "5. Explore number of views to each product in a store 'premium only'\n"
 						+ "6. Get the most viewed product 'premium only'\n"
-						+ "7. Explore products in store\n8. signout");
+						+ "7. Explore products in store\n8. View specific product details\n9. signout");
 				in = input.nextInt();
 				if (in == 1) {
 					ArrayList<Product> systemProduct = storeOwnerCntroller.GetAllProducts();
@@ -157,7 +158,18 @@ public class StoreOwnerView {
 					String storeID = input.next();
 					ArrayList<Product> products = storeOwnerCntroller.getProducts(storeID,(type == 1)?false:true);
 					PrintProducts(products);
-				} else if (in == 8) {
+				} else if(in == 8) {
+					System.out.println("Enter the price : ");
+					float price = input.nextInt();
+					System.out.println("Enter the brand ID : ");
+					String brandID = input.next();
+					System.out.println("Enter the category : ");
+					String category = input.next();
+					System.out.println("Enter the name : ");
+					String name = input.next();
+					ArrayList<Product> products = _productController.Search(price, brandID, category, name);
+					PrintProducts(products);
+				}else if (in == 9) {
 					return false;
 				} else {
 					System.out.println("Wrong input !");

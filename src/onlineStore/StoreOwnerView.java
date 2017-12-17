@@ -177,9 +177,13 @@ public class StoreOwnerView {
 					ArrayList<Product> products = _productController.Search(price, brandID, category, name);
 					PrintProducts(products);
 				}else if(in == 9){
+					System.out.println("Enter the product name : ");
 					String productName = input.next();
+					System.out.println("Enter the product ID : ");
 					String productID = input.next();
+					System.out.println("Enter the brand : ");
 					String brand = input.next();
+					System.out.println("Enter the category : ");
 					String category = input.next();
 					int type;
 					do {

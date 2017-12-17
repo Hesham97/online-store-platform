@@ -35,9 +35,9 @@ public class Admin {
   	public ArrayList<Product> getProducts(String storeID, boolean type) throws SQLException {	
   		ArrayList<Product> products = null;
 		if(!type)
-			productDBHandler.onlineStoreProducts (storeID);
+			products = productDBHandler.onlineStoreProducts (storeID);
 		else
-			productDBHandler.offlineStoreProducts (storeID);
+			products = productDBHandler.offlineStoreProducts (storeID);
 		return products;
 	}
 

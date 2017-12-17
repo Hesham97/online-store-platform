@@ -14,8 +14,7 @@ public class AdminView {
 		@SuppressWarnings("resource")
 		Scanner input = new Scanner(System.in);
 		try {
-			if(adminController == null) {
-				
+			if(adminController == null) {				
 				System.out.println("1. signin\n2. close");
 				in = input.nextInt();
 				if(in == 1) {

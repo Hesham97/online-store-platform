@@ -1,6 +1,7 @@
 package onlineStore;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 public class Admin {
 
@@ -9,6 +10,7 @@ public class Admin {
   	public String password;
 
   	AdminDBHandler adminDBHandler = new AdminDBHandler();
+  	ProductDBHandler productDBHandler = new ProductDBHandler();
   
   	public boolean SignIn() throws SQLException {
 	  	return adminDBHandler.FindAdmin(name,password);
@@ -29,6 +31,15 @@ public class Admin {
   	public void assignVoucher(String serialNumber, String customerUseName) throws SQLException {
   		adminDBHandler.assignVoucher(serialNumber, customerUseName);
   	}
+  	
+  	public ArrayList<Product> getProducts(String storeID, boolean type) throws SQLException {	
+  		ArrayList<Product> products = null;
+		if(!type)
+			productDBHandler.onlineStoreProducts (storeID);
+		else
+			productDBHandler.offlineStoreProducts (storeID);
+		return products;
+	}
 
   	public void DeleteProduct(String productID) throws SQLException {}
 

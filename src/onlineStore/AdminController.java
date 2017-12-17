@@ -1,6 +1,7 @@
 package onlineStore;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 public class AdminController {
   
@@ -29,21 +30,17 @@ public class AdminController {
 		admin.assignVoucher(serialNumber,customerUseName);
 	}
 	
-	public void DeleteProduct(String productID) throws SQLException {
-		admin.DeleteProduct(productID);
+	public ArrayList<Product> getProducts(String storeID, boolean type) throws SQLException {
+		return admin.getProducts(storeID,type);
 	}
 	
-	public void RemoveStore(String storeID) throws SQLException {
-		admin.RemoveStore(storeID);
-	}
+	public void DeleteProduct(String productID) throws SQLException {}
 	
-	public void BlockStoreOwner(String storeOwnerID) throws SQLException {
-		admin.BlockStoreOwner(storeOwnerID);
-	}
+	public void RemoveStore(String storeID) throws SQLException {}
 	
-	public void BlockUser(String customerName) throws SQLException {
-		admin.BlockUser(customerName);
-	}
+	public void BlockStoreOwner(String storeOwnerID) throws SQLException {}
+	
+	public void BlockUser(String customerName) throws SQLException {}
 	
 	// public Stat ShowStat(){}
 	

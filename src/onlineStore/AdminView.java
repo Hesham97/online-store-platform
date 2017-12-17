@@ -1,6 +1,7 @@
 package onlineStore;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class AdminView {
@@ -32,8 +33,9 @@ public class AdminView {
 					System.out.println("Wrong input !");
 				}
 			}else {
-				System.out.println("1. add brand\n2. add product\n3. remove product\n4. remove store\n"
-						+ "5. block store owner\n6. block user\n7. add voucher card\n8. provide voucher cards\n9. signout");
+				System.out.println("1. add brand\n2. add product\n"
+						+ "3. add voucher card\n4. provide voucher cards\n"
+						+ "5. Explore products in store\n6. signout");
 				in = input.nextInt();
 				if(in == 1) {
 					System.out.print("Enter the brand name : ");
@@ -64,27 +66,7 @@ public class AdminView {
 							System.out.println("wrong input");
 					}while(type > 2 || type < 1);
 					adminController.AddProduct(name , productID , brand, category,(type == 1)?false:true);
-				}else if(in == 3) {
-					System.out.print("Enter the product ID : ");
-					String productID;
-					productID = input.next();
-					adminController.DeleteProduct(productID);
-				}else if(in == 4) {
-					System.out.print("Enter the store ID : ");
-					String storeID;
-					storeID = input.next();
-					adminController.RemoveStore(storeID);
-				}else if(in == 5) {
-					System.out.print("Enter the store owner ID : ");
-					String storeOwnerID;
-					storeOwnerID = input.next();
-					adminController.BlockStoreOwner(storeOwnerID);
-				}else if(in == 6) {
-					System.out.print("Enter the customer name : ");
-					String customerName;
-					customerName = input.next();
-					adminController.BlockUser(customerName);
-				}else if(in == 7){
+				}else if(in == 3){
 					String serialNumber;
 					do {
 						System.out.print("Enter the serial number : ");
@@ -97,7 +79,7 @@ public class AdminView {
 					int quantity;
 					quantity = input.nextInt();
 					adminController.AddVoucherCard(serialNumber,value,quantity);
-				}else if(in == 8) {
+				}else if(in == 4) {
 					System.out.print("Enter the serial number : ");
 					String serialNumber;
 					serialNumber = input.next();
@@ -105,7 +87,19 @@ public class AdminView {
 					String customerUseName;
 					customerUseName = input.next();
 					adminController.assignVoucher(serialNumber, customerUseName);
-				}else if(in == 9){
+				}else if(in == 5){
+					int type;
+					do {
+						System.out.println("1. online store\n2. offline store");
+						type = input.nextInt();
+						if(type > 2 || type < 1)
+							System.out.println("wrong input");
+					}while(type > 2 || type < 1);
+					System.out.println("Enter the store ID : ");
+					String storeID = input.next();
+					ArrayList<Product> products = adminController.getProducts(storeID,(type == 1)?false:true);
+					PrintProducts(products);
+				}else if(in == 6){
 					return false;
 				}else{
 					System.out.println("Wrong input !");
@@ -116,5 +110,16 @@ public class AdminView {
 			adminController = null;
 		}
 		return true;
+	}
+	
+	void PrintProducts(ArrayList<Product> products) {
+		if(products == null){
+			System.out.println("there is no products");
+			return;
+		}
+		for (int i = 0; i < products.size(); i++) {
+			System.out.println("product id : " + products.get(i).productID + " ,name : " + products.get(i).name
+					+ " ,category : " + products.get(i).category);
+		}
 	}
 }

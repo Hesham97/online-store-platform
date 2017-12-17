@@ -51,7 +51,8 @@ public class StoreOwnerView {
 				System.out.println("1. Add product to online store\n2.add product to offline store"
 						+ "\n3. add online store\n4. add offline store\n"
 						+ "5. Explore number of views to each product in a store 'premium only'\n"
-						+ "6. Get the most viewed product 'premium only'\n7. signout");
+						+ "6. Get the most viewed product 'premium only'\n"
+						+ "7. Explore products in store\n8. signout");
 				in = input.nextInt();
 				if (in == 1) {
 					ArrayList<Product> systemProduct = storeOwnerCntroller.GetAllProducts();
@@ -145,6 +146,18 @@ public class StoreOwnerView {
 					}else
 						System.out.println("you are not premium");
 				} else if (in == 7) {
+					int type;
+					do {
+						System.out.println("1. online store\n2. offline store");
+						type = input.nextInt();
+						if(type > 2 || type < 1)
+							System.out.println("wrong input");
+					}while(type > 2 || type < 1);
+					System.out.println("Enter the store ID : ");
+					String storeID = input.next();
+					ArrayList<Product> products = storeOwnerCntroller.getProducts(storeID,(type == 1)?false:true);
+					PrintProducts(products);
+				} else if (in == 8) {
 					return false;
 				} else {
 					System.out.println("Wrong input !");

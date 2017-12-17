@@ -36,19 +36,20 @@ public class ProductDBHandler {
 		Statement stmtw = DB.createStatement();
 		ResultSet resultSet = stmtw.executeQuery(getQuery);
 
-		String productName;
+		String productName=null;
 		String category = null;
 		String brand = null;
 
 		while (resultSet.next()) {
 			category = resultSet.getString("CATEGORYNAME");
 			brand = resultSet.getString("BRANDNAME");
+			productName = resultSet.getString("PRODUCTNAME");
 		}
 		String insertQuery = "INSERT INTO ONLINESTOREPRODUCT (PRODUCTID,ONLINESTORENAME,PRODUCTPRICE,"
-				+ "PRODUCTQUANTITY,PRODUCTDISCOUNT,numberOfViews,BRANDNAME,CATEGORYNAME)" + "VALUES " + "('"
-				+ (productID + storeID) + "', '" + storeID + "','" + productPrice + "'," + quantity + "," + discount
-				+ ",0,'" + brand + "','" + category + "');";
-		System.out.println("Creating statement...");
+				+ "PRODUCTQUANTITY,PRODUCTDISCOUNT,numberOfViews,BRANDNAME,CATEGORYNAME,PRODUCTNAME)" + "VALUES " + "('"
+				+ (productID + storeID) + "', '" + storeID + "'," + productPrice + "," + quantity + "," + discount
+				+ ",0,'" + brand + "','" + category + "','"+productName+"');";
+		//System.out.println(insertQuery);
 		Statement stmt = DB.createStatement();
 		stmt.executeUpdate(insertQuery);
 
@@ -62,15 +63,17 @@ public class ProductDBHandler {
 
 		String category = null;
 		String brand = "";
+		String productName=null;
 
 		while (resultSet.next()) {
 			category = resultSet.getString("CATEGORYNAME");
 			brand = resultSet.getString("BRANDNAME");
+			productName = resultSet.getString("PRODUCTNAME");
 		}
 		String insertQuery = "INSERT INTO OFFLINESTOREPRODUCT (PRODUCTID,OFFLINESTORENAME,PRODUCTPRICE,"
-				+ "PRODUCTQUANTITY,PRODUCTDISCOUNT,numberOfViews,BRANDNAME,CATEGORYNAME)" + "VALUES " + "('"
+				+ "PRODUCTQUANTITY,PRODUCTDISCOUNT,numberOfViews,BRANDNAME,CATEGORYNAME,PRODUCTNAME)" + "VALUES " + "('"
 				+ (productID + storeID) + "', '" + storeID + "','" + productPrice + "'," + quantity + "," + discount
-				+ ",0,'" + brand + "','" + category + "');";
+				+ ",0,'" + brand + "','" + category + "','"+productName+"');";
 		System.out.println("Creating statement...");
 		Statement stmt = DB.createStatement();
 

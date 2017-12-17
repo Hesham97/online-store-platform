@@ -101,14 +101,17 @@ public class AdminView {
 					ArrayList<Product> products = adminController.getProducts(storeID,(type == 1)?false:true);
 					PrintProducts(products);
 				}else if(in == 6){
-					System.out.println("Enter the price : ");
-					float price = input.nextInt();
-					System.out.println("Enter the brand ID : ");
+					System.out.println("Enter the price \n-1 for skip: ");
+					float price = input.nextFloat();
+					System.out.println("Enter the brand ID \n-1 for skip:  ");
 					String brandID = input.next();
-					System.out.println("Enter the category : ");
+					if(brandID.equals("-1")) brandID = "";
+					System.out.println("Enter the category \n-1 for skip:  ");
 					String category = input.next();
-					System.out.println("Enter the name : ");
+					if(category.equals("-1")) category = "";
+					System.out.println("Enter the name \n-1 for skip:  ");
 					String name = input.next();
+					if(name.equals("-1")) name = "";
 					ArrayList<Product> products = _productController.Search(price, brandID, category, name);
 					PrintProducts(products);
 				}else if(in == 7){
